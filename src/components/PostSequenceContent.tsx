@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { product } from "@/data/product";
 
@@ -92,12 +93,12 @@ function FinalSection() {
         <h2 className="text-5xl md:text-7xl font-display font-black uppercase text-[#1a1a1a] leading-[0.95] max-w-4xl mb-8">
           {product.assets.finalTagline}
         </h2>
-        <a
-          href="#shop"
+        <Link
+          href="/shop"
           className="inline-block px-12 py-4 text-xl font-display tracking-[0.2em] uppercase bg-[#1a1a1a] text-white rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(0,0,0,0.2)]"
         >
           Buy Now
-        </a>
+        </Link>
       </motion.div>
     </section>
   );
