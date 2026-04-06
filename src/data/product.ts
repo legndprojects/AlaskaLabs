@@ -13,9 +13,9 @@ export const product = {
     finalTagline: "THE PUREST PEPTIDE, STRAIGHT FROM THE SOURCE.",
   },
   specs: [
-    { value: ">99.8%", label: "PURITY VERIFIED" },
+    { value: ">99.8%", label: "ULTRA-HIGH PURITY" },
     { value: "HPLC", label: "& MASS SPEC CONFIRMED" },
-    { value: "<1", label: "EU/MG — ENDOTOXIN TESTED" },
+    { value: "<1 EU/MG", label: "ENDOTOXIN TESTED" },
     { value: "COA", label: "CERTIFICATE OF ANALYSIS INCLUDED" },
   ],
   storySections: [
