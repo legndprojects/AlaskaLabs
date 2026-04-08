@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue } from "next/font/google";
 import Providers from "@/components/Providers";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en" className={`h-full antialiased ${bebasNeue.variable}`}>
       <body className="min-h-full">
         <Providers>{children}</Providers>
+        <Footer />
       </body>
     </html>
   );
