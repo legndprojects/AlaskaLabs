@@ -1,33 +1,83 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useCart } from "@/lib/cart-context";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isLanding = pathname === "/";
   const { scrollYProgress } = useScroll();
-  const bg = useTransform(
+  const { itemCount, openDrawer } = useCart();
+
+  const landingBg = useTransform(
     scrollYProgress,
     [0, 0.85, 0.95],
     ["rgba(5,13,26,0.3)", "rgba(5,13,26,0.3)", "rgba(139,0,0,0.4)"]
   );
-  const { itemCount, openDrawer } = useCart();
 
   return (
     <motion.nav
-      style={{ backgroundColor: bg }}
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-4 backdrop-blur-xl border-b border-white/10"
+      style={isLanding ? { backgroundColor: landingBg } : undefined}
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-4 backdrop-blur-xl ${
+        isLanding
+          ? "border-b border-white/10"
+          : "bg-white border-b border-[#eee]"
+      }`}
     >
       <Link
         href="/"
-        className="text-2xl font-display tracking-[0.2em] text-white uppercase"
+        className={`text-2xl font-display tracking-[0.2em] uppercase ${
+          isLanding ? "text-white" : "text-[#1a1a1a]"
+        }`}
       >
         AlaskaLabs
       </Link>
-      <div className="flex items-center gap-4">
+
+      <div className="flex items-center gap-6">
+        {!isLanding && (
+          <div className="hidden md:flex items-center gap-6">
+            <Link
+              href="/shop"
+              className={`text-sm font-sans transition-colors ${
+                pathname.startsWith("/shop")
+                  ? "text-[#0072BC]"
+                  : "text-[#444] hover:text-[#1a1a1a]"
+              }`}
+            >
+              Shop
+            </Link>
+            <Link
+              href="/about"
+              className={`text-sm font-sans transition-colors ${
+                pathname === "/about"
+                  ? "text-[#0072BC]"
+                  : "text-[#444] hover:text-[#1a1a1a]"
+              }`}
+            >
+              About
+            </Link>
+            <Link
+              href="/faq"
+              className={`text-sm font-sans transition-colors ${
+                pathname === "/faq"
+                  ? "text-[#0072BC]"
+                  : "text-[#444] hover:text-[#1a1a1a]"
+              }`}
+            >
+              FAQ
+            </Link>
+          </div>
+        )}
+
         <button
           onClick={openDrawer}
-          className="relative text-white hover:text-prime-blue transition-colors"
+          className={`relative transition-colors ${
+            isLanding
+              ? "text-white hover:text-prime-blue"
+              : "text-[#1a1a1a] hover:text-[#0072BC]"
+          }`}
           aria-label="Open cart"
         >
           <svg
@@ -50,12 +100,36 @@ export default function Navbar() {
             </span>
           )}
         </button>
-        <Link
-          href="/shop"
-          className="px-6 py-2 text-sm font-display tracking-[0.15em] uppercase bg-white text-prime-blue rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
-        >
-          Shop Now
-        </Link>
+
+        {isLanding ? (
+          <Link
+            href="/shop"
+            className="px-6 py-2 text-sm font-display tracking-[0.15em] uppercase bg-white text-prime-blue rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+          >
+            Shop Now
+          </Link>
+        ) : (
+          <Link
+            href="/account"
+            className="text-[#444] hover:text-[#1a1a1a] transition-colors"
+            aria-label="Account"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+              />
+            </svg>
+          </Link>
+        )}
       </div>
     </motion.nav>
   );
