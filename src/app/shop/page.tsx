@@ -30,7 +30,6 @@ export default async function ShopPage() {
   try {
     const response = await medusa.store.product.list({
       limit: 50,
-      fields: "+variants.prices,+variants.calculated_price",
     });
     products = response.products || [];
   } catch {

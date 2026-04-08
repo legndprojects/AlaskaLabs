@@ -31,7 +31,6 @@ export default async function ProductPage({
   try {
     const { products } = await medusa.store.product.list({
       handle,
-      fields: "+variants.prices,+variants.calculated_price",
     });
     product = products?.[0] || null;
   } catch {

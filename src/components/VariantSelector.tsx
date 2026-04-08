@@ -42,9 +42,13 @@ export default function VariantSelector({
         {variants.map((variant) => {
           const isSelected = variant.id === selectedId;
           const price = getPrice(variant);
-          const sizeValue = variant.options
-            ? Object.values(variant.options)[0]
-            : variant.title;
+          // Medusa v2 options can be an array of objects or a Record<string, string>
+          let sizeValue = variant.title;
+          if (Array.isArray(variant.options) && variant.options.length > 0) {
+            sizeValue = variant.options[0].value;
+          } else if (variant.options && typeof variant.options === "object" && !Array.isArray(variant.options)) {
+            sizeValue = Object.values(variant.options)[0] as string;
+          }
 
           return (
             <button
