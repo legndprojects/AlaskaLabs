@@ -49,7 +49,7 @@ export const product = {
       eyebrow: "05 — VERIFICATION",
       title: "LAB TESTED",
       description:
-        "Every batch is third-party verified for identity, potency, and purity. We test for heavy metals, microbial contamination, and endotoxin levels — publishing full Certificates of Analysis so you never have to guess what you're putting in your body. Clean peptides, zero compromise.",
+        "Each batch undergoes deep analytical release testing for identity, assay, purity, and impurity profile using LC-MS and HPLC-based characterization. Our review extends beyond basic pass/fail metrics to include related substances, residual solvents, water content, endotoxin, bioburden, elemental impurity screening, aggregate-related risk, and counterion composition. Every lot is supported by a published Certificate of Analysis built for research environments that demand precision, consistency, and traceable quality data.",
     },
   ],
 };
