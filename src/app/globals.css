@@ -6,6 +6,7 @@
   --color-prime-dark-red: #8B0000;
   --color-prime-white: #FFFFFF;
   --font-display: var(--font-bebas-neue), sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
 }
 
 html {
@@ -22,4 +23,13 @@ body {
   background: #050D1A;
   color: #ffffff;
   font-family: var(--font-bebas-neue), sans-serif;
+}
+
+@keyframes terminal-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: terminal-blink 1s step-end infinite;
 }

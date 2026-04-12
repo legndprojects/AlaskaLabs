@@ -4,44 +4,48 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { product } from "@/data/product";
 
+/**
+ * The static bottle that anchors the scene transition. It fades in just
+ * before the SplitReveal cut, stays centered horizontally as the dark
+ * panels split open around it, then settles for the final CTA.
+ */
 export default function TravelingBottle() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll();
 
-  /* appear when white sections start, semi-transparent over cards, solid at end */
+  /* fade in just before the cut, stay solid through the reveal */
   const opacity = useTransform(
     scrollYProgress,
-    [0.85, 0.87, 0.88, 0.96, 0.98, 1],
-    [0, 0.8, 0.4, 0.4, 0.85, 1]
+    [0.83, 0.86, 0.94, 1],
+    [0, 1, 1, 1]
   );
 
-  /* start far right overlapping the cards, then drift left, settle center at final */
+  /* stay centered horizontally — the bottle is the divider */
   const x = useTransform(
     scrollYProgress,
-    [0.86, 0.89, 0.92, 0.96, 1],
-    ["35%", "25%", "10%", "-8%", "0%"]
+    [0.83, 1],
+    ["0%", "0%"]
   );
 
-  /* rotation: tilted like reference, straighten at end */
+  /* very subtle straighten + scale during transition */
   const rotate = useTransform(
     scrollYProgress,
-    [0.86, 0.90, 0.96, 1],
-    [-10, -6, 4, 0]
+    [0.86, 0.94, 1],
+    [-2, 0, 0]
   );
 
-  /* scale */
   const scale = useTransform(
     scrollYProgress,
-    [0.86, 0.93, 1],
-    [0.95, 0.95, 1.05]
+    [0.86, 0.94, 1],
+    [0.95, 1, 1.05]
   );
 
-  /* vertical: start slightly below center (near the cards), rise to center */
+  /* very gentle vertical drift through the cut */
   const y = useTransform(
     scrollYProgress,
-    [0.86, 0.93, 1],
-    ["12%", "6%", "0%"]
+    [0.86, 0.94, 1],
+    ["3%", "0%", "0%"]
   );
 
   return (
@@ -53,7 +57,7 @@ export default function TravelingBottle() {
       <img
         src={product.assets.staticBottle}
         alt={product.name}
-        className="max-h-[65vh] w-auto object-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.15)]"
+        className="max-h-[65vh] w-auto object-contain drop-shadow-[0_25px_70px_rgba(0,0,0,0.25)]"
       />
     </motion.div>
   );

@@ -28,6 +28,8 @@ interface FlipTextProps {
   cycleSpeed?: number;
   /** number of random chars before settling */
   cycles?: number;
+  /** if provided, animation starts when this becomes true (bypasses in-view detection) */
+  trigger?: boolean;
 }
 
 export default function FlipText({
@@ -37,6 +39,7 @@ export default function FlipText({
   stagger = 40,
   cycleSpeed = 30,
   cycles = 4,
+  trigger,
 }: FlipTextProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -79,11 +82,12 @@ export default function FlipText({
   }, [text, delay, stagger, cycleSpeed, cycles]);
 
   useEffect(() => {
-    if (isInView && !hasStarted.current) {
+    const active = trigger !== undefined ? trigger : isInView;
+    if (active && !hasStarted.current) {
       hasStarted.current = true;
       animate();
     }
-  }, [isInView, animate]);
+  }, [isInView, trigger, animate]);
 
   return (
     <span ref={ref} className={className} aria-label={text}>
