@@ -218,17 +218,47 @@ export default function PeptideShowcase() {
   };
 
   return (
-    <section className="relative bg-white py-16 md:py-24 px-4 md:px-8 lg:px-16 flex items-center justify-center">
-      {/* Color glow that spills onto the white background around the card */}
+    <section className="relative bg-white py-16 md:py-24 px-4 md:px-8 lg:px-16 flex items-center justify-center overflow-visible">
+      {/* Primary ambient glow — wide horizontal spread */}
       <div
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         style={{
-          width: "1200px",
-          height: "800px",
-          background: `radial-gradient(ellipse at center, ${p.theme.mid}, transparent 70%)`,
-          opacity: 0.5,
-          filter: "blur(80px)",
-          transition: "background 300ms ease, opacity 300ms ease",
+          width: "200vw",
+          height: "160%",
+          background: `radial-gradient(ellipse 60% 50% at 50% 50%, ${p.theme.mid} 0%, ${p.theme.mid}cc 20%, ${p.theme.mid}55 45%, transparent 70%)`,
+          opacity: 1,
+          filter: "blur(30px)",
+          transition: "background 400ms ease",
+        }}
+      />
+
+      {/* Bottom bleed — wide color wash into white below */}
+      <div
+        className="pointer-events-none absolute"
+        style={{
+          bottom: "-200px",
+          left: "-20vw",
+          right: "-20vw",
+          height: "500px",
+          background: `radial-gradient(ellipse 70% 80% at 50% 0%, ${p.theme.mid} 0%, ${p.theme.mid}88 25%, ${p.theme.mid}33 50%, transparent 75%)`,
+          opacity: 1,
+          filter: "blur(30px)",
+          transition: "background 400ms ease",
+        }}
+      />
+
+      {/* Top bleed — color wash above */}
+      <div
+        className="pointer-events-none absolute"
+        style={{
+          top: "-150px",
+          left: "-10vw",
+          right: "-10vw",
+          height: "350px",
+          background: `radial-gradient(ellipse 70% 80% at 50% 100%, ${p.theme.mid}aa 0%, ${p.theme.mid}44 40%, transparent 70%)`,
+          opacity: 1,
+          filter: "blur(30px)",
+          transition: "background 400ms ease",
         }}
       />
 
