@@ -29,7 +29,7 @@ export default function Footer() {
               AlaskaLabs
             </Link>
             <p className="text-sm text-gray-400 mt-4 font-sans leading-relaxed">
-              The purest peptides, straight from the source.
+              The Purest Peptides You Can Get.
             </p>
           </div>
 

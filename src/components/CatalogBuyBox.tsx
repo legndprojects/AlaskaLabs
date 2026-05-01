@@ -32,7 +32,7 @@ export default function CatalogBuyBox({ product }: { product: CatalogProduct }) 
         {product.name}
       </h1>
       <p className="text-sm font-sans text-[#888] mb-6">
-        {product.strength} · {product.vial}
+        {product.strength}
       </p>
 
       <p className="text-3xl font-sans font-bold text-[#1a1a1a] mb-6">

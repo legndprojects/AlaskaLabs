@@ -141,6 +141,7 @@ export default function MobileProductDetail({
         <img
           src={product.thumbnail}
           alt={`${product.name} ${product.strength}`}
+          style={{ filter: "drop-shadow(0 12px 20px rgba(0,0,0,0.35)) drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}
           className="relative w-full h-full object-contain px-6 py-8"
           draggable={false}
         />
@@ -160,9 +161,9 @@ export default function MobileProductDetail({
           {product.name}
         </h1>
         <p className="text-sm font-sans text-[#1a1a1a]/60 mb-5">
-          {product.strength} · {product.vial}
+          {product.strength}
         </p>
-        <div className="flex items-center gap-3 mb-7">
+        <div className="flex items-center gap-3 mb-4">
           <p className="text-2xl font-sans font-bold text-[#1a1a1a]">
             ${product.price.toFixed(2)}
           </p>
@@ -171,6 +172,11 @@ export default function MobileProductDetail({
             In Stock
           </span>
         </div>
+
+        {/* Description */}
+        <p className="text-sm font-sans text-[#444] leading-relaxed mb-7">
+          {product.description}
+        </p>
 
         {/* Quantity */}
         <p className="text-[10px] font-display tracking-[0.25em] uppercase text-[#1a1a1a]/60 mb-2 font-semibold">
@@ -315,7 +321,7 @@ export default function MobileProductDetail({
           showSticky ? "translate-y-0" : "translate-y-full"
         }`}
       >
-        <div className="bg-white border-t border-black/5 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex items-center gap-3 shadow-[0_-12px_28px_-12px_rgba(0,0,0,0.18)]">
+        <div className="bg-white border-t border-black/5 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex items-center gap-2.5 shadow-[0_-12px_28px_-12px_rgba(0,0,0,0.18)]">
           <div className="flex-1 min-w-0">
             <p className="text-[10px] font-display tracking-[0.2em] uppercase text-[#1a1a1a]/60 leading-none truncate">
               {product.name} {product.strength}
@@ -323,6 +329,28 @@ export default function MobileProductDetail({
             <p className="text-base font-sans font-bold text-[#1a1a1a] leading-tight mt-0.5">
               ${(product.price * qty).toFixed(2)}
             </p>
+          </div>
+          <div className="flex items-center bg-[#f5f5f5] rounded-full shrink-0">
+            <button
+              type="button"
+              aria-label="Decrease quantity"
+              onClick={() => setQty((q) => Math.max(1, q - 1))}
+              disabled={qty <= 1}
+              className="w-9 h-9 flex items-center justify-center text-sm text-[#1a1a1a] disabled:opacity-30"
+            >
+              −
+            </button>
+            <span className="w-6 text-center font-sans font-semibold text-[#1a1a1a] text-sm">
+              {qty}
+            </span>
+            <button
+              type="button"
+              aria-label="Increase quantity"
+              onClick={() => setQty((q) => q + 1)}
+              className="w-9 h-9 flex items-center justify-center text-sm text-[#1a1a1a]"
+            >
+              +
+            </button>
           </div>
           <button
             type="button"

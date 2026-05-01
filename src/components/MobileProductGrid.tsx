@@ -83,6 +83,7 @@ function ProductCard({
             alt={product.name}
             width={300}
             height={300}
+            style={{ filter: "drop-shadow(0 12px 20px rgba(0,0,0,0.35)) drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}
             className="object-contain max-h-full w-auto"
           />
         </div>
@@ -91,7 +92,7 @@ function ProductCard({
       <div className="p-3 flex flex-col flex-1">
         <div className="flex items-center gap-1.5 mb-1.5">
           <span className="text-[9px] tracking-[0.1em] uppercase text-[#0072BC]/70 font-display">
-            {product.category}
+            99%+
           </span>
           <span className="text-[9px] text-[#0072BC]/40">·</span>
           <span className="text-[9px] tracking-[0.05em] text-[#0072BC]/50 font-display">

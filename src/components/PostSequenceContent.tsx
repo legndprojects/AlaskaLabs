@@ -121,7 +121,7 @@ function FinalSection() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2 className="text-5xl md:text-7xl font-display font-black uppercase text-[#0072BC] leading-[0.95] max-w-4xl mb-8 mx-auto">
-            THE PUREST PEPTIDE, RIGHT TO YOUR DOOR.
+            The Purest Peptides You Can Get.
           </h2>
         </motion.div>
         <motion.div
@@ -180,13 +180,14 @@ function MobileHorizontalCatalog() {
               <img
                 src={p.thumbnail}
                 alt={p.name}
+                style={{ filter: "drop-shadow(0 12px 20px rgba(0,0,0,0.35)) drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}
                 className="w-full h-full object-contain p-3"
                 draggable={false}
               />
             </div>
             <div className="p-4 flex flex-col flex-1">
               <p className="text-[11px] tracking-[0.12em] uppercase text-[#0072BC]/60 font-display mb-1.5">
-                {p.category} · 99%+
+                99%+ PURITY
               </p>
               <h4 className="font-display font-bold text-xl text-[#0b1a3a] leading-tight mb-1">
                 {p.name}

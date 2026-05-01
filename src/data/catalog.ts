@@ -18,10 +18,10 @@ export const catalog: CatalogProduct[] = [
     vial: "2 ml Vial",
     price: 116.99,
     thumbnail: "/images/products/retatrutide-10mg.png",
-    category: "Metabolic",
-    tags: ["glp-1", "gip", "glucagon", "triple agonist", "weight", "metabolic"],
+    category: "Research Compound",
+    tags: ["glp-1", "gip", "glucagon", "triple agonist", "research"],
     description:
-      "Retatrutide is a synthetic triple agonist peptide investigated in preclinical and clinical research for its concurrent activity at the GLP-1, GIP, and glucagon receptors. Published literature (Jastreboff et al., NEJM 2023) characterizes dose-dependent reductions in body weight and shifts in energy expenditure in study cohorts. Supplied as lyophilized powder for reconstitution. For laboratory research use only.",
+      "Retatrutide is a synthetic triple agonist peptide investigated in preclinical and clinical research for its concurrent activity at the GLP-1, GIP, and glucagon receptors. Published literature (Jastreboff et al., NEJM 2023) characterizes its receptor binding profile and dose-dependent pharmacodynamic responses in study cohorts. Supplied as lyophilized powder for reconstitution. For laboratory research use only.",
   },
   {
     handle: "retatrutide-20mg",
@@ -30,10 +30,10 @@ export const catalog: CatalogProduct[] = [
     vial: "2 ml Vial",
     price: 179.99,
     thumbnail: "/images/products/retatrutide-20mg.png",
-    category: "Metabolic",
-    tags: ["glp-1", "gip", "glucagon", "triple agonist", "weight", "metabolic"],
+    category: "Research Compound",
+    tags: ["glp-1", "gip", "glucagon", "triple agonist", "research"],
     description:
-      "High-strength Retatrutide presentation for extended research protocols. Functions as a unimolecular agonist at GLP-1, GIP, and glucagon receptors, a profile studied for its effects on adiposity, glycemic control, and hepatic lipid handling in published trial data. Lyophilized powder; reconstitute with bacteriostatic water for in-vitro work. Research use only.",
+      "High-strength Retatrutide presentation for extended research protocols. Functions as a unimolecular agonist at GLP-1, GIP, and glucagon receptors, a profile studied for its receptor selectivity and pharmacokinetic properties in published trial data. Lyophilized powder; reconstitute with bacteriostatic water for in-vitro work. Research use only.",
   },
   {
     handle: "glow-70mg",
@@ -69,7 +69,7 @@ export const catalog: CatalogProduct[] = [
     category: "Growth Hormone",
     tags: ["ghrh", "tesamorelin", "growth hormone", "visceral fat"],
     description:
-      "Tesamorelin is a stabilized GHRH(1–44) analog that binds the pituitary GHRH receptor to modulate pulsatile growth hormone release. Its study corpus includes randomized trials on visceral adipose tissue reduction in lipodystrophy (Falutz et al., NEJM 2007) and IGF-1 dynamics. Supplied as lyophilized powder. Research use only.",
+      "Tesamorelin is a stabilized GHRH(1–44) analog that binds the pituitary GHRH receptor. Its study corpus includes published characterization of receptor binding affinity and signaling dynamics (Falutz et al., NEJM 2007). Supplied as lyophilized powder. Research use only.",
   },
   {
     handle: "bpc-157-10mg",
@@ -91,9 +91,9 @@ export const catalog: CatalogProduct[] = [
     price: 53.96,
     thumbnail: "/images/products/mots-c-10mg.png",
     category: "Mitochondrial",
-    tags: ["mots-c", "mitochondrial", "metabolic", "aging"],
+    tags: ["mots-c", "mitochondrial", "research", "aging"],
     description:
-      "MOTS-C is a 16-amino-acid peptide encoded within the mitochondrial 12S rRNA. It is studied as a mitochondrial-derived peptide (MDP) acting on AMPK signaling and glucose homeostasis (Lee et al., Cell Metabolism 2015), with preclinical data in models of insulin resistance and age-related metabolic decline. Research use only.",
+      "MOTS-C is a 16-amino-acid peptide encoded within the mitochondrial 12S rRNA. It is studied as a mitochondrial-derived peptide (MDP) with published characterization of its AMPK signaling pathway interactions (Lee et al., Cell Metabolism 2015). Supplied as lyophilized powder. Research use only.",
   },
   {
     handle: "slu-pp-332-5mg",
@@ -102,10 +102,10 @@ export const catalog: CatalogProduct[] = [
     vial: "2 ml Vial",
     price: 89.96,
     thumbnail: "/images/products/slu-pp-332-5mg.png",
-    category: "Metabolic",
-    tags: ["err", "estrogen related receptor", "metabolic", "exercise mimetic"],
+    category: "Research Compound",
+    tags: ["err", "estrogen related receptor", "exercise mimetic", "research"],
     description:
-      "SLU-PP-332 is a pan-agonist of the estrogen-related receptors (ERRα/β/γ). Published work by Billon, Burris, and colleagues (Journal of Pharmacology and Experimental Therapeutics 2023; Science Advances 2024) characterizes it in murine models as an exercise-mimetic compound altering oxidative muscle fiber composition, endurance, and energy expenditure. Research use only.",
+      "SLU-PP-332 is a pan-agonist of the estrogen-related receptors (ERRα/β/γ). Published work by Billon, Burris, and colleagues (JPET 2023; Science Advances 2024) characterizes its receptor activation profile and downstream transcriptional effects in murine models. Research use only.",
   },
   {
     handle: "ipamorelin-10mg",

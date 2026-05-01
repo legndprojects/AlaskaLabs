@@ -266,16 +266,16 @@ export default function HeroCanvas({
           style={{
             opacity: loaded && introTextVisible ? 1 : 0,
             zIndex: 2,
-            top: 0,
+            top: "100px",
             bottom: 0,
             left: "4vw",
-            width: "38vw",
+            width: "min(36vw, 520px)",
           }}
         >
           <div className="w-full">
             {/* eyebrow tag */}
             <div
-              className="font-display text-xs md:text-sm tracking-[0.35em] uppercase text-white/50 mb-5"
+              className="font-display text-xs md:text-sm tracking-[0.35em] uppercase text-white/50 mb-4"
               style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6)" }}
             >
               ALASKA LABS

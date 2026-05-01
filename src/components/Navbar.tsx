@@ -10,7 +10,7 @@ import { catalog, type CatalogProduct } from "@/data/catalog";
 const NAV_LINKS = [
   { label: "About Us", href: "/about" },
   { label: "Contact Us", href: "/contact" },
-  { label: "FAQs", href: "/faq" },
+  { label: "FAQ", href: "/faq" },
   { label: "Wholesale", href: "/wholesale" },
   { label: "Research Partners", href: "/promote", gold: true },
 ];
@@ -189,12 +189,12 @@ export default function Navbar() {
         <form
           ref={formRef}
           onSubmit={onSubmit}
-          className="relative flex-1 min-w-0 max-w-md"
+          className="relative flex-1 min-w-0 max-w-md overflow-hidden"
         >
           <div className={`flex items-center gap-2 rounded-full px-3 md:px-4 py-2 transition-all ${
             dark
-              ? "bg-[#f2f4f7] border border-black/5 focus-within:border-[#0072BC]/40 focus-within:bg-white focus-within:shadow-[0_0_0_4px_rgba(0,114,188,0.08)]"
-              : "bg-white/15 border border-white/20 focus-within:bg-white/25 focus-within:border-white/40 md:bg-[#f2f4f7] md:border-black/5 md:focus-within:border-[#0072BC]/40 md:focus-within:bg-white md:focus-within:shadow-[0_0_0_4px_rgba(0,114,188,0.08)]"
+              ? "bg-[#f2f4f7] border border-black/5 focus-within:border-[#0072BC]/40 focus-within:bg-white"
+              : "bg-white/15 border border-white/20 focus-within:bg-white/25 focus-within:border-white/40 md:bg-[#f2f4f7] md:border-black/5 md:focus-within:border-[#0072BC]/40 md:focus-within:bg-white"
           }`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -220,8 +220,8 @@ export default function Navbar() {
               }}
               onFocus={() => setOpen(true)}
               onKeyDown={onKeyDown}
-              placeholder="Search peptides…"
-              className={`flex-1 bg-transparent outline-none text-sm font-sans transition-colors duration-300 ${
+              placeholder="Search…"
+              className={`flex-1 bg-transparent outline-none text-sm font-sans truncate transition-colors duration-300 ${
                 dark ? "text-[#1a1a1a] placeholder:text-[#888]" : "text-white placeholder:text-white/50 md:text-[#1a1a1a] md:placeholder:text-[#888]"
               }`}
               aria-label="Search peptides"
@@ -290,7 +290,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-[15px] font-sans font-medium uppercase transition-colors whitespace-nowrap ${
+                className={`text-[17px] font-display tracking-[0.1em] uppercase transition-colors whitespace-nowrap ${
                   active
                     ? "text-[#0072BC]"
                     : "text-[#444] hover:text-[#0072BC]"

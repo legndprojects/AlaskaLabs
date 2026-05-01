@@ -41,6 +41,7 @@ export default async function ProductPage({
             <img
               src={product.thumbnail}
               alt={`${product.name} ${product.strength}`}
+              style={{ filter: "drop-shadow(0 12px 20px rgba(0,0,0,0.35)) drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}
               className="w-full h-full object-contain"
             />
           </div>

@@ -54,6 +54,7 @@ function Card({ p }: { p: CatalogProduct }) {
           src={p.thumbnail}
           alt={`${p.name} ${p.strength}`}
           draggable={false}
+          style={{ filter: "drop-shadow(0 12px 20px rgba(0,0,0,0.35)) drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}
           className="relative w-full h-full object-contain px-4 py-5 select-none transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-2 group-hover:scale-[1.04]"
         />
       </div>
@@ -67,7 +68,7 @@ function Card({ p }: { p: CatalogProduct }) {
           {p.name}
         </h3>
         <p className="text-xs font-sans text-[#1a1a1a]/60 mt-1 mb-3">
-          {p.strength} · {p.vial}
+          {p.strength}
         </p>
 
         <div className="mt-auto flex items-end justify-between gap-3">
