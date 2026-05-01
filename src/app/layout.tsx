@@ -28,6 +28,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://alaskalabs.is"),
   title: "Alaska Labs — The Purest Peptides You Can Get",
   description: "The Purest Peptides You Can Get.",
   icons: {
