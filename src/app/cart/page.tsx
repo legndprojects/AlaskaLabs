@@ -17,7 +17,7 @@ export default function CartPage() {
 
   if (isLoading) {
     return (
-      <main className="min-h-screen bg-white pt-24 pb-16 px-8 md:px-16 lg:px-24">
+      <main className="min-h-screen bg-white pt-24 md:pt-36 pb-16 px-8 md:px-16 lg:px-24">
         <div className="max-w-3xl mx-auto">
           <p className="text-[#888] font-sans">Loading cart...</p>
         </div>
@@ -26,7 +26,7 @@ export default function CartPage() {
   }
 
   return (
-    <main className="min-h-screen bg-white pt-24 pb-16 px-8 md:px-16 lg:px-24">
+    <main className="min-h-screen bg-white pt-24 md:pt-36 pb-16 px-8 md:px-16 lg:px-24">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-5xl md:text-6xl font-display font-black uppercase text-[#1a1a1a] mb-8">
           Your Cart

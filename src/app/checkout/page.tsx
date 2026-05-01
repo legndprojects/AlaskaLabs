@@ -28,7 +28,7 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <main className="min-h-screen bg-white pt-24 pb-16 px-8 md:px-16 lg:px-24">
+      <main className="min-h-screen bg-white pt-24 md:pt-36 pb-16 px-8 md:px-16 lg:px-24">
         <div className="max-w-2xl mx-auto text-center py-16">
           <h1 className="text-4xl font-display font-black uppercase text-[#1a1a1a] mb-4">
             Checkout
@@ -59,7 +59,7 @@ export default function CheckoutPage() {
     "block text-xs font-sans font-semibold text-[#666] uppercase tracking-wide mb-1";
 
   return (
-    <main className="min-h-screen bg-white pt-24 pb-16 px-8 md:px-16 lg:px-24">
+    <main className="min-h-screen bg-white pt-24 md:pt-36 pb-16 px-8 md:px-16 lg:px-24">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-4xl font-display font-black uppercase text-[#1a1a1a] mb-8">
           Checkout

@@ -41,13 +41,12 @@ export default function CartLineItem({ item }: CartLineItemProps) {
         <div className="flex items-center gap-2 mt-2">
           <button
             onClick={() => {
-              if (item.quantity <= 1) {
-                removeItem(item.id);
-              } else {
+              if (item.quantity > 1) {
                 updateQuantity(item.id, item.quantity - 1);
               }
             }}
-            className="w-7 h-7 rounded border border-[#ddd] flex items-center justify-center text-sm text-[#666] hover:bg-[#f5f5f5]"
+            disabled={item.quantity <= 1}
+            className="w-7 h-7 rounded border border-[#ddd] flex items-center justify-center text-sm text-[#666] hover:bg-[#f5f5f5] disabled:opacity-40 disabled:hover:bg-transparent"
           >
             −
           </button>

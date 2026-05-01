@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Navbar from "@/components/Navbar";
 import HeroCanvas from "@/components/HeroCanvas";
-import TextOverlays from "@/components/TextOverlays";
 import PostSequenceContent from "@/components/PostSequenceContent";
 import PeptideShowcase from "@/components/PeptideShowcase";
+import MobileProductGrid from "@/components/MobileProductGrid";
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
@@ -15,7 +14,7 @@ export default function Home() {
   /* background: #050D1A stays solid until animation is done, then fades to light */
   const bg = useTransform(
     scrollYProgress,
-    [0, 0.84, 0.88, 0.92],
+    [0, 0.18, 0.22, 0.26],
     [
       "linear-gradient(180deg, #050D1A 0%, #050D1A 100%)",
       "linear-gradient(180deg, #050D1A 0%, #050D1A 100%)",
@@ -25,23 +24,23 @@ export default function Home() {
   );
 
   return (
-    <motion.div style={{ background: bg }} className="relative">
-      <Navbar />
-
-      {/* Phase 1: 192-frame scroll sequence + text overlays */}
-      <div className="relative">
+    <>
+      {/* ── DESKTOP: full scroll animation experience ── */}
+      <motion.div style={{ background: bg }} className="relative hidden md:block">
         <HeroCanvas
           introTextVisible={introTextVisible}
           setIntroTextVisible={setIntroTextVisible}
         />
-        <TextOverlays introTextVisible={introTextVisible} />
+        <PeptideShowcase />
+        <PostSequenceContent />
+      </motion.div>
+
+      {/* ── MOBILE: PeptideShowcase hero + product grid ── */}
+      <div className="md:hidden bg-black">
+        <PeptideShowcase />
+        <MobileProductGrid />
+        <PostSequenceContent />
       </div>
-
-      {/* Phase 2: cinematic peptide showcase */}
-      <PeptideShowcase />
-
-      {/* Phase 3 content: specs, lab tested, final CTA */}
-      <PostSequenceContent />
-    </motion.div>
+    </>
   );
 }

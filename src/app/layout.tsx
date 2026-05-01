@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Fraunces } from "next/font/google";
+import { Bebas_Neue, Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import Providers from "@/components/Providers";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
@@ -19,9 +20,23 @@ const fraunces = Fraunces({
   style: ["normal", "italic"],
 });
 
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-jakarta",
+  display: "swap",
+  weight: ["400", "500", "600"],
+});
+
 export const metadata: Metadata = {
-  title: "Prime Ice Pop — AlaskaLabs",
+  title: "Alaska Labs",
   description: "The purest peptide, straight from the source.",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
@@ -30,10 +45,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`h-full antialiased ${bebasNeue.variable} ${fraunces.variable}`}
+      className={`h-full antialiased ${bebasNeue.variable} ${fraunces.variable} ${plusJakarta.variable}`}
     >
       <body className="min-h-full">
-        <Providers>{children}</Providers>
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
         <Footer />
       </body>
     </html>

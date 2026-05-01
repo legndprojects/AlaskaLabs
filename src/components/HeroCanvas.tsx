@@ -11,8 +11,8 @@ const INTRO_DURATION_MS = 1400;
 const FRAME_SCROLL_RANGE = 0.95; // must match the useTransform mapping below
 /* Lock to a fixed reference size so frames with slightly different
    dimensions don't cause visible jumps during playback */
-const REF_WIDTH = 3840;
-const REF_HEIGHT = 2160;
+const REF_WIDTH = 2560;
+const REF_HEIGHT = 1440;
 
 function frameSrc(i: number) {
   const n = String(i).padStart(3, "0");
@@ -30,6 +30,7 @@ export default function HeroCanvas({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const introActiveRef = useRef(true);
+  const minScrollRef = useRef(0);
   const [loaded, setLoaded] = useState(false);
 
   const { scrollYProgress } = useScroll({
@@ -38,30 +39,43 @@ export default function HeroCanvas({
   });
 
   /* fade out canvas when the sequence container is scrolled past */
-  const canvasOpacity = useTransform(scrollYProgress, [0.92, 1], [1, 0]);
+  const canvasOpacity = useTransform(scrollYProgress, [0.85, 0.95], [1, 0]);
 
   /* map scroll to frame index (only first ~95% of container plays frames) */
   const frameIndex = useTransform(scrollYProgress, [0, FRAME_SCROLL_RANGE], [0, TOTAL_FRAMES - 1]);
 
-  /* preload all frames */
+  /* preload frames — show page after intro frames load, rest loads in background */
   useEffect(() => {
     let mounted = true;
-    const imgs: HTMLImageElement[] = [];
-    let count = 0;
+    const imgs: HTMLImageElement[] = new Array(TOTAL_FRAMES);
+    const PRIORITY_FRAMES = INTRO_END_FRAME + 5; // load enough for intro + buffer
+    let priorityCount = 0;
 
-    for (let i = 1; i <= TOTAL_FRAMES; i++) {
+    // Load priority frames first (1 through PRIORITY_FRAMES)
+    for (let i = 1; i <= PRIORITY_FRAMES; i++) {
       const img = new Image();
       img.src = frameSrc(i);
       img.onload = () => {
-        count++;
-        if (count === TOTAL_FRAMES && mounted) setLoaded(true);
+        priorityCount++;
+        if (priorityCount === PRIORITY_FRAMES && mounted) setLoaded(true);
       };
-      imgs.push(img);
+      imgs[i - 1] = img;
     }
+
+    // Load remaining frames in background after a short delay
+    const loadRest = () => {
+      for (let i = PRIORITY_FRAMES + 1; i <= TOTAL_FRAMES; i++) {
+        const img = new Image();
+        img.src = frameSrc(i);
+        imgs[i - 1] = img;
+      }
+    };
+    const timer = setTimeout(loadRest, 100);
 
     imagesRef.current = imgs;
     return () => {
       mounted = false;
+      clearTimeout(timer);
     };
   }, []);
 
@@ -117,9 +131,6 @@ export default function HeroCanvas({
      jump the page scroll to the position that corresponds to the end frame so
      scroll-driven playback picks up seamlessly. Scrolling back up still
      reaches frame 1 since the scroll→frame mapping is unchanged. */
-  /* disable browser scroll restoration so reload always starts from the top,
-     otherwise the intro headline and a scroll-driven TextOverlays section
-     would briefly overlap during the intro. */
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
@@ -130,7 +141,6 @@ export default function HeroCanvas({
   useEffect(() => {
     if (!loaded) return;
 
-    /* always begin the intro from scrollY=0 so TextOverlays are invisible */
     window.scrollTo(0, 0);
 
     let raf = 0;
@@ -144,15 +154,13 @@ export default function HeroCanvas({
       if (!container) return;
       const rect = container.getBoundingClientRect();
       const containerTopAbs = window.scrollY + rect.top;
-      /* useScroll with offset ["start start", "end start"] maps progress 0→1
-         over scrollY ∈ [containerTop, containerTop + containerHeight], i.e.
-         the full container height — NOT height minus viewport. */
       const scrollableLen = container.offsetHeight;
       const targetProgress =
         (INTRO_END_FRAME / (TOTAL_FRAMES - 1)) * FRAME_SCROLL_RANGE;
       const targetY = containerTopAbs + targetProgress * scrollableLen;
       window.scrollTo(0, targetY);
       restScrollY = Math.round(window.scrollY);
+      minScrollRef.current = restScrollY;
     };
 
     const tick = (now: number) => {
@@ -182,21 +190,17 @@ export default function HeroCanvas({
       if (cancelled) return;
       cancelled = true;
       cancelAnimationFrame(raf);
+      finishToScroll();
       introActiveRef.current = false;
-      setIntroTextVisible(false);
-      /* let the scroll handler take over from here — redraw once to sync */
       draw(Math.round(frameIndex.get()));
     };
 
-    /* fade the intro copy when the user scrolls away from the resting
-       position set by finishToScroll. We compare current scrollY against
-       the recorded restScrollY and fade on any deviation > 1px. */
+    /* Once intro finishes, let scroll position drive text visibility */
     const onScroll = () => {
-      if (cancelled) return;
-      if (introActiveRef.current) return; // still running the intro
-      if (Math.abs(window.scrollY - restScrollY) > 1) {
-        cancelIntro();
-      }
+      if (introActiveRef.current) return;
+      const distance = window.scrollY - restScrollY;
+      /* show text when near the landing point, fade when scrolled 200px+ away */
+      setIntroTextVisible(distance < 200);
     };
 
     window.addEventListener("wheel", cancelIntro, { passive: true });
@@ -218,6 +222,18 @@ export default function HeroCanvas({
     };
   }, [loaded, draw, frameIndex, setIntroTextVisible]);
 
+  /* Clamp scroll: never let user scroll above the intro landing point */
+  useEffect(() => {
+    const clamp = () => {
+      const min = minScrollRef.current;
+      if (min > 0 && window.scrollY < min) {
+        window.scrollTo(0, min);
+      }
+    };
+    window.addEventListener("scroll", clamp, { passive: false });
+    return () => window.removeEventListener("scroll", clamp);
+  }, []);
+
   /* handle resize */
   useEffect(() => {
     const onResize = () => {
@@ -233,7 +249,7 @@ export default function HeroCanvas({
   }, [loaded, draw, frameIndex]);
 
   return (
-    <div ref={containerRef} className="relative" style={{ height: "1400vh" }}>
+    <div ref={containerRef} className="relative" style={{ height: "250vh" }}>
       <motion.div
         style={{ opacity: canvasOpacity }}
         className="fixed inset-0 w-screen h-screen"
@@ -262,7 +278,7 @@ export default function HeroCanvas({
               className="font-display text-xs md:text-sm tracking-[0.35em] uppercase text-white/50 mb-5"
               style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6)" }}
             >
-              {product.storySections[0].eyebrow}
+              ALASKA LABS
             </div>
 
             {/* thin accent rule */}
@@ -270,14 +286,12 @@ export default function HeroCanvas({
 
             {/* headline */}
             <h1
-              className="text-5xl md:text-7xl lg:text-8xl xl:text-[8.5rem] font-display font-black uppercase text-white leading-[0.85] tracking-tight"
+              className="text-4xl md:text-6xl lg:text-7xl xl:text-[7rem] font-display font-black uppercase text-white leading-[0.85] tracking-tight"
               style={{
                 textShadow: "0 2px 24px rgba(0,0,0,0.55)",
               }}
             >
-              {product.storySections[0].headline
-                .split("\n")
-                .map((line, li) => (
+              {["THE GOLD", "STANDARD", "IN PURITY"].map((line, li) => (
                   <span key={li} className="block whitespace-nowrap">
                     <FlipText
                       text={line}
@@ -298,7 +312,7 @@ export default function HeroCanvas({
                 textShadow: "0 2px 14px rgba(0,0,0,0.55)",
               }}
             >
-              {product.storySections[0].description}
+              Every batch undergoes LC-MS and HPLC testing for identity, purity, endotoxins, residual solvents, bioburden, and elemental impurities — going beyond basic pass/fail to deliver research-grade confidence with every lot.
             </p>
           </div>
         </div>

@@ -13,7 +13,7 @@ export const product = {
     finalTagline: "THE PUREST PEPTIDE, STRAIGHT FROM THE SOURCE.",
   },
   specs: [
-    { value: ">99.8%", label: "ULTRA-HIGH PURITY" },
+    { value: "≥99%", label: "ULTRA-HIGH PURITY" },
     { value: "HPLC", label: "& MASS SPEC CONFIRMED" },
     { value: "<1 EU/MG", label: "ENDOTOXIN TESTED" },
     { value: "COA", label: "CERTIFICATE OF ANALYSIS INCLUDED" },
@@ -21,9 +21,9 @@ export const product = {
   storySections: [
     {
       eyebrow: "01 — PURITY",
-      headline: "PHARMACEUTICAL\nGRADE PURITY",
+      headline: "ULTRA-GRADE\nPURITY",
       description:
-        "HPLC-verified to greater than 99.8% purity and mass-spec confirmed. Every batch is synthesized under sterile conditions and meets pharmaceutical-grade specifications before it ever leaves the lab.",
+        "HPLC-verified to greater than 99% purity and mass-spec confirmed. Every batch is synthesized under sterile conditions and meets ultra-grade specifications before it ever leaves the lab.",
     },
     {
       eyebrow: "02 — STANDARDS",
@@ -40,10 +40,10 @@ export const product = {
   ],
   postSections: [
     {
-      eyebrow: "04 — SPECIFICATIONS",
+      eyebrow: "SPECIFICATIONS",
       title: "MAXIMUM PURITY",
       description:
-        "Engineered with a precise blend of bioactive compounds — each batch undergoes rigorous HPLC analysis to ensure molecular integrity. Our peptides are synthesized using solid-phase methodology, delivering consistent chain lengths and purity levels that exceed pharmaceutical standards.",
+        "Engineered with a precise blend of bioactive compounds — each batch undergoes rigorous HPLC analysis to ensure molecular integrity. Our peptides are synthesized using solid-phase methodology, delivering consistent chain lengths and purity levels that far exceed industry standards.",
     },
     {
       eyebrow: "05 — VERIFICATION",

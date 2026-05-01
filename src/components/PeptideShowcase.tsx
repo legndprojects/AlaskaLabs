@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { findByHandle } from "@/data/catalog";
 import { useCart } from "@/lib/cart-context";
@@ -319,13 +319,18 @@ export default function PeptideShowcase() {
   const bgShake = useAnimation();
   const p = peptides[idx];
 
+  /* Broadcast current theme so Navbar menu can match */
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent("peptide-theme", { detail: { start: p.theme.start, mid: p.theme.mid, end: p.theme.end } }));
+  }, [p.theme]);
+
   const go = (delta: 1 | -1) => {
     setDir(delta);
     setIdx((i) => (i + delta + peptides.length) % peptides.length);
     // Subtle background shake — shifts opposite to swipe direction then settles
     bgShake.start({
-      x: [0, delta * -8, 0],
-      scale: [1, 0.985, 1],
+      x: [0, delta * -4, 0],
+      scale: [1, 0.992, 1],
       transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
     });
     window.dispatchEvent(new CustomEvent("peptide-nav", { detail: { dir: delta } }));

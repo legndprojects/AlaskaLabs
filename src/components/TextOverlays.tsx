@@ -21,13 +21,7 @@ export default function TextOverlays({
     offset: ["start start", "end start"],
   });
 
-  /* stagger 3 sections across first ~45% of scroll */
-  const sections = product.storySections;
-  const sectionDuration = 0.13;
-  const gap = 0.02;
-
-  /* alternate sides: left, right, left */
-  const sides: Array<"left" | "right"> = ["left", "right", "left"];
+  const section = product.storySections[0];
 
   return (
     <div
@@ -35,35 +29,21 @@ export default function TextOverlays({
       className="fixed inset-0 pointer-events-none transition-opacity duration-700 ease-out"
       style={{
         zIndex: 2,
-        height: "1400vh",
-        /* suppress while the intro copy is still on screen so section 2
-           ("EXCEPTIONAL STANDARDS") doesn't bleed through at the intro's
-           resting scroll position */
+        height: "300vh",
         opacity: introTextVisible ? 0 : 1,
       }}
     >
-      {sections.map((section, i) => {
-        const start = 0.05 + i * (sectionDuration + gap);
-        const fadeIn = start;
-        const hold = start + 0.03;
-        const holdEnd = start + sectionDuration - 0.03;
-        const fadeOut = start + sectionDuration;
-
-        return (
-          <TextSection
-            key={i}
-            eyebrow={section.eyebrow}
-            headline={section.headline}
-            description={section.description}
-            side={sides[i % sides.length]}
-            scrollYProgress={scrollYProgress}
-            fadeIn={fadeIn}
-            hold={hold}
-            holdEnd={holdEnd}
-            fadeOut={fadeOut}
-          />
-        );
-      })}
+      <TextSection
+        eyebrow={section.eyebrow}
+        headline={section.headline}
+        description={section.description}
+        side="left"
+        scrollYProgress={scrollYProgress}
+        fadeIn={0.05}
+        hold={0.08}
+        holdEnd={0.85}
+        fadeOut={0.95}
+      />
     </div>
   );
 }

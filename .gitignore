@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# backups
+public/images/sequence-backup/
+
+# local tooling state
+.superpowers/

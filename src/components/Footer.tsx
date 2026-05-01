@@ -1,8 +1,24 @@
+"use client";
+
 import Link from "next/link";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Footer() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end end"],
+  });
+
+  const bg = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.6, 1],
+    ["#0a1628", "#0d2847", "#0b1f3a", "#060e1a"]
+  );
+
   return (
-    <footer className="bg-[#1a1a1a] text-white px-8 md:px-16 lg:px-24 py-16">
+    <motion.footer ref={ref} style={{ backgroundColor: bg }} className="relative z-20 text-white px-8 md:px-16 lg:px-24 py-16">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div>
@@ -90,6 +106,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

@@ -9,7 +9,7 @@ const DIGITS = "0123456789";
 const ALL_CHARS = UPPER + LOWER + DIGITS;
 
 // Characters that don't flip — they just appear
-const PASSTHROUGH = new Set(" .,;:!?'-—/()%<>\"&+");
+const PASSTHROUGH = new Set(" .,;:!?'-—/()%<>≥≤=\"&+");
 
 function randomChar(target: string): string {
   if (/[A-Z]/.test(target)) return UPPER[Math.floor(Math.random() * UPPER.length)];

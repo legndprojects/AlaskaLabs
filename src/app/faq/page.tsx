@@ -86,7 +86,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 export default function FAQPage() {
   return (
-    <main className="min-h-screen bg-white pt-24 pb-16 px-8 md:px-16 lg:px-24">
+    <main className="min-h-screen bg-white pt-24 md:pt-36 pb-16 px-8 md:px-16 lg:px-24">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-6xl md:text-8xl font-display font-black uppercase text-[#1a1a1a] mb-8">
           FAQ
