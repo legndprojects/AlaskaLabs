@@ -33,10 +33,10 @@ export const metadata: Metadata = {
   description: "The Purest Peptides You Can Get.",
   icons: {
     icon: [
-      { url: "/images/favicon-64.png", sizes: "64x64", type: "image/png" },
+      { url: "/images/favicon-64.png?v=2", sizes: "64x64", type: "image/png" },
     ],
-    apple: "/images/logo.png",
-    shortcut: "/images/favicon-64.png",
+    apple: "/images/logo.png?v=2",
+    shortcut: "/images/favicon-64.png?v=2",
   },
   openGraph: {
     title: "Alaska Labs",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/logo.png",
+        url: "/images/logo.png?v=2",
         width: 1200,
         height: 630,
         alt: "Alaska Labs",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Alaska Labs",
     description: "The Purest Peptides You Can Get.",
-    images: ["/images/logo.png"],
+    images: ["/images/logo.png?v=2"],
   },
 };
 
