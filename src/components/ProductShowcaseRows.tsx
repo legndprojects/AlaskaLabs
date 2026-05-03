@@ -132,7 +132,6 @@ export default function ProductShowcaseRows() {
           className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
         >
           <div>
-            <div className="shimmer-line h-[2px] w-20 mb-5 rounded-full" />
             <h3 className="text-5xl md:text-6xl lg:text-7xl font-display font-black uppercase text-[#0072BC] leading-[0.9] tracking-tight mb-4">
               Research Peptides
             </h3>
