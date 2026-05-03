@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import HeroCanvas from "@/components/HeroCanvas";
 import PostSequenceContent from "@/components/PostSequenceContent";
 import PeptideShowcase from "@/components/PeptideShowcase";
@@ -10,13 +10,6 @@ import MobileProductGrid from "@/components/MobileProductGrid";
 export default function Home() {
   const { scrollYProgress } = useScroll();
   const [introTextVisible, setIntroTextVisible] = useState(true);
-  const [showCurtain, setShowCurtain] = useState(true);
-
-  /* Dismiss the dark curtain after the intro animation completes */
-  useEffect(() => {
-    const timer = setTimeout(() => setShowCurtain(false), 1800);
-    return () => clearTimeout(timer);
-  }, []);
 
   /* background: #050D1A stays solid until animation is done, then fades to light */
   const bg = useTransform(
@@ -30,22 +23,18 @@ export default function Home() {
     ]
   );
 
+  /* Dark curtain that fades IN over the hero as you scroll away from it */
+  const curtainOpacity = useTransform(scrollYProgress, [0.12, 0.18], [0, 1]);
+
   return (
     <>
       {/* ── DESKTOP: full scroll animation experience ── */}
       <motion.div style={{ background: bg }} className="relative hidden md:block">
-        {/* Dark curtain that fades away after intro */}
-        <AnimatePresence>
-          {showCurtain && (
-            <motion.div
-              initial={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-0 bg-[#050D1A] pointer-events-none"
-              style={{ zIndex: 40 }}
-            />
-          )}
-        </AnimatePresence>
+        {/* Dark overlay that covers the hero animation as you scroll past */}
+        <motion.div
+          style={{ opacity: curtainOpacity, zIndex: 5 }}
+          className="fixed inset-0 bg-[#050D1A] pointer-events-none hidden md:block"
+        />
 
         <HeroCanvas
           introTextVisible={introTextVisible}
