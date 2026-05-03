@@ -95,10 +95,10 @@ function SpecsAndLabSection() {
                   }}
                 />
                 <p className="relative text-4xl md:text-5xl font-display font-black text-[#0072BC] leading-none mb-2 transition-transform duration-400 group-hover:-translate-y-0.5">
-                  <FlipText text={spec.value} stagger={35} cycles={3} delay={i * 100} />
+                  {spec.value}
                 </p>
                 <p className="relative text-[10px] md:text-[11px] tracking-[0.1em] text-[#0072BC]/70 uppercase font-display">
-                  <FlipText text={spec.label} stagger={20} cycleSpeed={25} cycles={2} delay={i * 100 + 200} />
+                  {spec.label}
                 </p>
                 <div className="pointer-events-none absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-[#0072BC]/25 group-hover:bg-[#0072BC] transition-colors duration-400" />
               </motion.div>
