@@ -33,7 +33,7 @@ export default function Home() {
         {/* Dark overlay that covers the hero animation as you scroll past */}
         <motion.div
           style={{ opacity: curtainOpacity, zIndex: 5 }}
-          className="fixed inset-0 bg-[#050D1A] pointer-events-none hidden md:block"
+          className="fixed inset-0 bg-[#0a1a3a] pointer-events-none hidden md:block"
         />
 
         <HeroCanvas
