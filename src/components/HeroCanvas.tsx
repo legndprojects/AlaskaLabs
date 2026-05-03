@@ -134,7 +134,7 @@ export default function HeroCanvas() {
   }, [loaded, draw, frameIndex]);
 
   return (
-    <div ref={containerRef} className="relative" style={{ height: "300vh" }}>
+    <div ref={containerRef} className="relative bg-[#f5f5f5]" style={{ height: "300vh" }}>
       {/* sticky pins the canvas for the full scroll-through of the container */}
       <motion.div
         style={{ opacity: canvasOpacity }}
