@@ -43,7 +43,7 @@ export default function HeroCanvas() {
      below and play through until it exits at the top. Total scroll
      distance = 300vh + 100vh = 400vh. */
   const frameIndex = useTransform(scrollYProgress, [0, 0.95], [0, TOTAL_FRAMES - 1]);
-  const textOpacity = useTransform(scrollYProgress, [0.01, 0.06, 0.3, 0.45], [0, 1, 1, 0]);
+  const textOpacity = useTransform(scrollYProgress, [0.15, 0.25, 0.5, 0.65], [0, 1, 1, 0]);
 
   /* detect when section enters viewport to trigger FlipText */
   useEffect(() => {
@@ -131,7 +131,7 @@ export default function HeroCanvas() {
     <div
       ref={containerRef}
       className="relative"
-      style={{ height: "300vh", clipPath: "inset(0)" }}
+      style={{ height: "180vh", clipPath: "inset(0)" }}
     >
       <div className="fixed inset-0 w-screen h-screen">
         <canvas ref={canvasRef} className="w-full h-full" />
