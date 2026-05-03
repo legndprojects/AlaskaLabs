@@ -24,15 +24,15 @@ export default function HeroCanvas() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"],
+    offset: ["start 0.9", "end start"],
   });
 
   /* canvas visible immediately, fades out at very end */
-  const canvasOpacity = useTransform(scrollYProgress, [0.9, 0.98], [1, 0]);
+  const canvasOpacity = useTransform(scrollYProgress, [0.95, 1], [1, 0]);
   /* text fades in early, fades out as you scroll deeper */
-  const textOpacity = useTransform(scrollYProgress, [0.02, 0.1, 0.35, 0.5], [0, 1, 1, 0]);
-  /* map scroll to frame index across the full scroll range */
-  const frameIndex = useTransform(scrollYProgress, [0, FRAME_SCROLL_RANGE], [0, TOTAL_FRAMES - 1]);
+  const textOpacity = useTransform(scrollYProgress, [0.01, 0.08, 0.3, 0.45], [0, 1, 1, 0]);
+  /* map scroll to frame index — use almost all the scroll range */
+  const frameIndex = useTransform(scrollYProgress, [0, 0.95], [0, TOTAL_FRAMES - 1]);
 
   /* detect when section enters viewport to trigger FlipText */
   useEffect(() => {
@@ -134,7 +134,7 @@ export default function HeroCanvas() {
   }, [loaded, draw, frameIndex]);
 
   return (
-    <div ref={containerRef} className="relative bg-[#f5f5f5]" style={{ height: "140vh" }}>
+    <div ref={containerRef} className="relative bg-[#f5f5f5]" style={{ height: "200vh" }}>
       {/* sticky pins the canvas for the full scroll-through of the container */}
       <motion.div
         style={{ opacity: canvasOpacity }}
