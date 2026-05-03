@@ -36,7 +36,7 @@ export default function HeroCanvas() {
    */
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 0.7", "end start"],
+    offset: ["start 0.4", "end start"],
   });
 
   /* Frames start immediately as the container enters the viewport from
