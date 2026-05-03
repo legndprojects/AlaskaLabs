@@ -6,7 +6,7 @@ import { product } from "@/data/product";
 import FlipText from "./FlipText";
 
 const TOTAL_FRAMES = 192;
-const INTRO_END_FRAME = 48; // 0-indexed, i.e. frame 049
+const INTRO_END_FRAME = 47; // 0-indexed, i.e. frame 048
 const INTRO_DURATION_MS = 1400;
 const FRAME_SCROLL_RANGE = 0.95; // must match the useTransform mapping below
 /* Lock to a fixed reference size so frames with slightly different
