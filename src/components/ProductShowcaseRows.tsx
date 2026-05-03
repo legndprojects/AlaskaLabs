@@ -122,7 +122,7 @@ function Card({ p }: { p: CatalogProduct }) {
 
 export default function ProductShowcaseRows() {
   return (
-    <section className="relative bg-[#f5f5f5] px-6 md:px-12 lg:px-20 pb-20 md:pb-28 hidden md:block">
+    <section className="relative bg-[#f5f5f5] px-6 md:px-12 lg:px-20 pt-20 md:pt-28 pb-20 md:pb-28 hidden md:block">
       <div className="max-w-[1400px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
