@@ -7,7 +7,7 @@ import { catalog } from "@/data/catalog";
 import FlipText from "./FlipText";
 import ProductShowcaseRows from "./ProductShowcaseRows";
 
-export default function PostSequenceContent() {
+export default function PostSequenceContent({ children }: { children?: React.ReactNode }) {
   return (
     <div className="relative z-20">
       {/* Mobile: specs first, then horizontal scroll catalog */}
@@ -18,6 +18,9 @@ export default function PostSequenceContent() {
 
       {/* Desktop: vertical card grid */}
       <ProductShowcaseRows />
+
+      {/* Desktop: PeptideShowcase inserted between products and specs */}
+      {children && <div className="hidden md:block">{children}</div>}
 
       {/* Desktop: specs after catalog */}
       <div className="hidden md:block">

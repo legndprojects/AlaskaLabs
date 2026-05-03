@@ -31,8 +31,9 @@ export default function Home() {
           introTextVisible={introTextVisible}
           setIntroTextVisible={setIntroTextVisible}
         />
-        <PeptideShowcase />
-        <PostSequenceContent />
+        <PostSequenceContent>
+          <PeptideShowcase />
+        </PostSequenceContent>
       </motion.div>
 
       {/* ── MOBILE: PeptideShowcase hero + product grid ── */}
