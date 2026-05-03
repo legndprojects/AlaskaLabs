@@ -1,11 +1,19 @@
 "use client";
 
+import { useEffect } from "react";
 import HeroCanvas from "@/components/HeroCanvas";
 import PostSequenceContent from "@/components/PostSequenceContent";
 import PeptideShowcase from "@/components/PeptideShowcase";
 import MobileProductGrid from "@/components/MobileProductGrid";
 
 export default function Home() {
+  /* Always scroll to top on load/refresh */
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       {/* ── DESKTOP: PeptideShowcase hero, then products, then animation ── */}

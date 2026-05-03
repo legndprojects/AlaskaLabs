@@ -26,10 +26,16 @@ export default function HeroCanvas() {
     offset: ["start start", "end start"],
   });
 
-  /* map scroll to frame index — all frames across 95% of scroll */
-  const frameIndex = useTransform(scrollYProgress, [0, 0.95], [0, TOTAL_FRAMES - 1]);
-  /* text fades in early, fades out as you scroll deeper */
-  const textOpacity = useTransform(scrollYProgress, [0.01, 0.08, 0.3, 0.45], [0, 1, 1, 0]);
+  /*
+   * Container = 350vh, sticky canvas = 100vh
+   * Sticky range = 250vh = 250/350 = 0.714 of scrollYProgress
+   * Map all 192 frames within the sticky range so the full animation
+   * plays while the canvas is pinned. After 0.714 the canvas naturally
+   * scrolls away — no dead space, no gap.
+   */
+  const STICKY_END = 250 / 350; // ~0.714
+  const frameIndex = useTransform(scrollYProgress, [0, STICKY_END * 0.98], [0, TOTAL_FRAMES - 1]);
+  const textOpacity = useTransform(scrollYProgress, [0.01, 0.06, 0.25, 0.4], [0, 1, 1, 0]);
 
   /* detect when section enters viewport to trigger FlipText */
   useEffect(() => {
@@ -75,8 +81,10 @@ export default function HeroCanvas() {
     if (!ctx) return;
 
     const dpr = window.devicePixelRatio || 1;
-    const w = window.innerWidth;
-    const h = window.innerHeight;
+    const el = canvas.parentElement;
+    if (!el) return;
+    const w = el.clientWidth;
+    const h = el.clientHeight;
 
     if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
       canvas.width = w * dpr;
@@ -109,7 +117,7 @@ export default function HeroCanvas() {
 
   /* scroll-driven playback */
   useMotionValueEvent(frameIndex, "change", (v) => {
-    if (loaded) draw(Math.round(v));
+    if (loaded) draw(Math.round(Math.min(v, TOTAL_FRAMES - 1)));
   });
 
   /* draw first frame when loaded */
@@ -131,22 +139,11 @@ export default function HeroCanvas() {
   }, [loaded, draw, frameIndex]);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative"
-      style={{
-        height: "350vh",
-        clipPath: "inset(0)",
-      }}
-    >
-      {/* fixed canvas clipped to container bounds — no overlay on other
-          sections, no dead space. Canvas is visible exactly while the
-          container is in the viewport. */}
-      <div className="fixed inset-0 w-screen h-screen">
-        <canvas
-          ref={canvasRef}
-          className="w-full h-full"
-        />
+    <div ref={containerRef} style={{ height: "350vh" }}>
+      {/* sticky keeps canvas pinned for 250vh of scrolling, then it
+          naturally scrolls away — no dead space, no gap */}
+      <div className="sticky top-0 w-full h-screen overflow-hidden">
+        <canvas ref={canvasRef} className="w-full h-full" />
         {/* Text overlay */}
         <motion.div
           style={{ opacity: textOpacity }}
