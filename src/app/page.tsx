@@ -24,7 +24,7 @@ export default function Home() {
   );
 
   /* Dark curtain that fades IN over the hero as you scroll away from it */
-  const curtainOpacity = useTransform(scrollYProgress, [0.12, 0.18], [0, 1]);
+  const curtainOpacity = useTransform(scrollYProgress, [0.22, 0.28], [0, 1]);
 
   return (
     <>
