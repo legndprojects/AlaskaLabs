@@ -121,7 +121,7 @@ const SLIDE_META: SlideMeta[] = [
     subtitle: "TRIPLE AGONIST · GLP-1 / GIP / GCG",
     shortDesc: "GLP-1 / GIP / Glucagon receptor agonist",
     description:
-      "A unimolecular triple agonist with concurrent activity at GLP-1, GIP, and glucagon receptors. Studied in published trials for dose-dependent shifts in body weight and energy expenditure.",
+      "A unimolecular triple agonist with concurrent activity at GLP-1, GIP, and glucagon receptors. Characterized in published literature for dose-dependent pharmacodynamic responses in study cohorts.",
     stampL: "RETA",
     stampR: "10MG",
     theme: THEMES.royal,
@@ -165,7 +165,7 @@ const SLIDE_META: SlideMeta[] = [
     subtitle: "STABILIZED GHRH(1–44) ANALOG",
     shortDesc: "Stabilized GHRH(1-44) analog",
     description:
-      "A stabilized GHRH(1–44) analog binding the pituitary GHRH receptor to modulate pulsatile growth hormone release. Referenced in randomized trials on visceral adipose dynamics.",
+      "A stabilized GHRH(1–44) analog binding the pituitary GHRH receptor. Published characterization (Falutz et al., NEJM 2007) documents receptor binding affinity and signaling dynamics in preclinical models.",
     stampL: "TESA",
     stampR: "GHRH",
     theme: THEMES.teal,
@@ -187,7 +187,7 @@ const SLIDE_META: SlideMeta[] = [
     subtitle: "MITOCHONDRIAL-DERIVED PEPTIDE",
     shortDesc: "16-amino-acid mitochondrial peptide",
     description:
-      "A 16-amino-acid peptide encoded within the mitochondrial 12S rRNA. Studied as a mitochondrial-derived peptide acting on AMPK signaling and glucose homeostasis.",
+      "A 16-amino-acid peptide encoded within the mitochondrial 12S rRNA. Characterized as a mitochondrial-derived peptide (MDP) with published data on AMPK signaling pathway interactions (Lee et al., Cell Metabolism 2015).",
     stampL: "MOTS",
     stampR: "MTDP",
     theme: THEMES.cyan,
@@ -195,10 +195,10 @@ const SLIDE_META: SlideMeta[] = [
   {
     handle: "slu-pp-332-5mg",
     name: "SLU-PP-332",
-    subtitle: "ERR PAN-AGONIST · EXERCISE MIMETIC",
+    subtitle: "ERR PAN-AGONIST · ERRα/β/γ",
     shortDesc: "ERRα/β/γ pan-agonist compound",
     description:
-      "A pan-agonist of the estrogen-related receptors (ERRα/β/γ). Characterized in murine models as an exercise-mimetic compound altering oxidative muscle composition and endurance.",
+      "A pan-agonist of the estrogen-related receptors (ERRα/β/γ). Characterized in murine models for downstream transcriptional effects on skeletal tissue gene expression (Billon et al., Science Advances 2024).",
     stampL: "SLU",
     stampR: "332",
     theme: THEMES.violet,
@@ -239,7 +239,7 @@ const SLIDE_META: SlideMeta[] = [
   {
     handle: "tb-500-10mg",
     name: "TB-500",
-    subtitle: "THYMOSIN BETA-4 · REGENERATIVE",
+    subtitle: "THYMOSIN BETA-4 FRAGMENT",
     shortDesc: "Thymosin β4 active fragment",
     description:
       "An active fragment of Thymosin β4, the primary actin-sequestering peptide in mammalian cells. Documented in cell migration, angiogenesis, and tissue-remodeling research.",
@@ -261,10 +261,10 @@ const SLIDE_META: SlideMeta[] = [
   {
     handle: "semax-10mg",
     name: "SEMAX",
-    subtitle: "NOOTROPIC · ACTH(4–10) ANALOG",
+    subtitle: "NEUROPEPTIDE · ACTH(4–10) ANALOG",
     shortDesc: "Synthetic ACTH(4-10) heptapeptide",
     description:
-      "A synthetic heptapeptide modeled after an ACTH fragment, characterized in published research for effects on BDNF and NGF expression and on attention, working memory, and cortical neuroplasticity in animal models.",
+      "A synthetic heptapeptide modeled after an ACTH(4–10) fragment, characterized in published research for effects on BDNF and NGF expression and neurotrophic signaling in rodent CNS models (Dolotov et al., 2006).",
     stampL: "SEMA",
     stampR: "ACTH",
     theme: THEMES.violet,
@@ -272,10 +272,10 @@ const SLIDE_META: SlideMeta[] = [
   {
     handle: "selank-10mg",
     name: "SELANK",
-    subtitle: "NOOTROPIC · TUFTSIN ANALOG",
+    subtitle: "NEUROPEPTIDE · TUFTSIN ANALOG",
     shortDesc: "Stabilized tuftsin analog heptapeptide",
     description:
-      "A synthetic tuftsin analog studied for anxiolytic-like activity, GABAergic modulation, and effects on enkephalin and monoamine pathways in rodent behavioral models. Stabilized with a Pro-Gly-Pro tail.",
+      "A synthetic tuftsin analog characterized for modulation of GABAergic signaling and effects on enkephalin/monoamine pathways in rodent behavioral models. Stabilized with a Pro-Gly-Pro C-terminal extension.",
     stampL: "SLK",
     stampR: "TUFT",
     theme: THEMES.cyan,

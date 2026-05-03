@@ -43,7 +43,7 @@ export const catalog: CatalogProduct[] = [
     price: 62.96,
     thumbnail: "/images/products/glow-70mg.png",
     category: "Blends",
-    tags: ["bpc-157", "tb-500", "ghk-cu", "blend", "repair", "skin"],
+    tags: ["bpc-157", "tb-500", "ghk-cu", "blend", "repair", "matrix"],
     description:
       "GLOW is a tri-peptide research blend containing BPC-157 (50 mg), TB-500 (50 mg), and GHK-Cu (50 mg). Each component has a distinct body of literature: BPC-157 for cytoprotective and angiogenic signaling (Sikiric et al.), TB-500 (Thymosin β4 fragment) for actin-sequestering activity and tissue remodeling studies, and GHK-Cu for matrix remodeling and antioxidant pathways (Pickart & Margolina, 2018). Research use only.",
   },
@@ -67,7 +67,7 @@ export const catalog: CatalogProduct[] = [
     price: 89.96,
     thumbnail: "/images/products/tesamorelin-10mg.png",
     category: "Growth Hormone",
-    tags: ["ghrh", "tesamorelin", "growth hormone", "visceral fat"],
+    tags: ["ghrh", "tesamorelin", "growth hormone", "ghrh-receptor"],
     description:
       "Tesamorelin is a stabilized GHRH(1–44) analog that binds the pituitary GHRH receptor. Its study corpus includes published characterization of receptor binding affinity and signaling dynamics (Falutz et al., NEJM 2007). Supplied as lyophilized powder. Research use only.",
   },
@@ -103,7 +103,7 @@ export const catalog: CatalogProduct[] = [
     price: 89.96,
     thumbnail: "/images/products/slu-pp-332-5mg.png",
     category: "Research Compound",
-    tags: ["err", "estrogen related receptor", "exercise mimetic", "research"],
+    tags: ["err", "estrogen related receptor", "err-agonist", "research"],
     description:
       "SLU-PP-332 is a pan-agonist of the estrogen-related receptors (ERRα/β/γ). Published work by Billon, Burris, and colleagues (JPET 2023; Science Advances 2024) characterizes its receptor activation profile and downstream transcriptional effects in murine models. Research use only.",
   },
@@ -139,9 +139,9 @@ export const catalog: CatalogProduct[] = [
     price: 71.98,
     thumbnail: "/images/products/ghk-cu-100mg.png",
     category: "Repair",
-    tags: ["ghk-cu", "copper peptide", "skin", "matrix", "repair"],
+    tags: ["ghk-cu", "copper peptide", "matrix", "repair"],
     description:
-      "GHK-Cu is the copper-bound tripeptide glycyl-L-histidyl-L-lysine, endogenously present in plasma and measured to decline with age. A large literature (Pickart & Margolina, International Journal of Molecular Sciences 2018) reviews its effects on matrix metalloproteinase regulation, collagen and elastin synthesis, antioxidant signaling, and wound-model remodeling. Research use only.",
+      "GHK-Cu is the copper-bound tripeptide glycyl-L-histidyl-L-lysine, endogenously present in plasma. A large literature (Pickart & Margolina, International Journal of Molecular Sciences 2018) reviews its effects on matrix metalloproteinase regulation, extracellular matrix protein expression, antioxidant signaling, and wound-model remodeling in preclinical studies. Research use only.",
   },
   {
     handle: "tb-500-10mg",
@@ -162,10 +162,10 @@ export const catalog: CatalogProduct[] = [
     vial: "2 ml Vial",
     price: 71.96,
     thumbnail: "/images/products/semax-10mg.png",
-    category: "Nootropic",
-    tags: ["semax", "nootropic", "neuropeptide", "acth fragment", "bdnf"],
+    category: "Neuropeptide",
+    tags: ["semax", "neuropeptide", "acth fragment", "bdnf"],
     description:
-      "Semax is a synthetic heptapeptide (Met-Glu-His-Phe-Pro-Gly-Pro) modeled after a fragment of adrenocorticotropic hormone (ACTH 4–10). Published research characterizes its activity on BDNF and NGF expression in the CNS (Dolotov et al., 2006) and its influence on attention, working memory, and cortical neuroplasticity in animal models. Supplied lyophilized for reconstitution. Research use only.",
+      "Semax is a synthetic heptapeptide (Met-Glu-His-Phe-Pro-Gly-Pro) modeled after a fragment of adrenocorticotropic hormone (ACTH 4–10). Published research characterizes its activity on BDNF and NGF expression and neurotrophic signaling in rodent CNS models (Dolotov et al., 2006). Supplied lyophilized for reconstitution. Research use only.",
   },
   {
     handle: "selank-10mg",
@@ -174,10 +174,10 @@ export const catalog: CatalogProduct[] = [
     vial: "2 ml Vial",
     price: 71.96,
     thumbnail: "/images/products/selank-10mg.png",
-    category: "Nootropic",
-    tags: ["selank", "nootropic", "anxiolytic", "tuftsin", "neuropeptide"],
+    category: "Neuropeptide",
+    tags: ["selank", "neuropeptide", "tuftsin", "gabaergic"],
     description:
-      "Selank is a synthetic heptapeptide analog of the immunomodulatory peptide tuftsin, stabilized with a Pro-Gly-Pro C-terminal extension. Reviewed literature (Medvedev et al., 2015; Kolomin et al.) documents its anxiolytic-like activity, modulation of GABAergic signaling, and effects on enkephalin/monoamine pathways in rodent behavioral models. Research use only.",
+      "Selank is a synthetic heptapeptide analog of the immunomodulatory peptide tuftsin, stabilized with a Pro-Gly-Pro C-terminal extension. Reviewed literature (Medvedev et al., 2015; Kolomin et al.) documents modulation of GABAergic signaling and effects on enkephalin/monoamine pathways in rodent behavioral models. Research use only.",
   },
   {
     handle: "melanotan-ii-10mg",
@@ -187,7 +187,7 @@ export const catalog: CatalogProduct[] = [
     price: 62.96,
     thumbnail: "/images/products/melanotan-ii-10mg.png",
     category: "Melanocortin",
-    tags: ["melanotan", "mt-2", "melanocortin", "alpha-msh", "tanning"],
+    tags: ["melanotan", "mt-2", "melanocortin", "alpha-msh", "mc1r"],
     description:
       "Melanotan II is a cyclic synthetic analog of α-melanocyte-stimulating hormone (α-MSH) acting as a non-selective agonist at melanocortin receptors (MC1R–MC5R). Characterized in early-phase literature (Hadley et al.; Dorr et al., 1996) for its effects on melanogenesis via MC1R and centrally mediated behavioral endpoints through MC3/4R. Research use only.",
   },
