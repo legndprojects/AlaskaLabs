@@ -145,11 +145,6 @@ export default function MobileProductDetail({
           className="relative w-full h-full object-contain px-6 py-8"
           draggable={false}
         />
-        <div className="absolute top-4 left-4">
-          <span className="bg-[#1a1a1a] text-white text-[10px] tracking-[0.25em] uppercase font-display font-semibold px-3 py-1.5 rounded-full">
-            {kindLabel(product)}
-          </span>
-        </div>
       </div>
 
       <div className="px-5 pt-6 pb-32">
