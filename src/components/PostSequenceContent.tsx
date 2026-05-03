@@ -138,7 +138,7 @@ function FinalSection() {
             className="inline-block px-12 py-4 text-xl font-display tracking-[0.2em] uppercase text-white rounded-full transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(0,30,120,0.35)] hover:shadow-[0_0_35px_rgba(0,40,160,0.45)]"
             style={{
               backgroundSize: "300% 300%",
-              backgroundImage: "linear-gradient(135deg, #0033aa, #0055dd, #002288, #0066cc, #003399, #0044bb)",
+              backgroundImage: "linear-gradient(135deg, #005a9e, #0072BC, #004a8c, #0080cc, #006aaa, #0072BC)",
               animation: "shimmer-btn 8s ease-in-out infinite",
             }}
           >

@@ -198,7 +198,7 @@ export default function Navbar() {
           onSubmit={onSubmit}
           className="relative flex-1 min-w-0 max-w-md md:max-w-lg"
         >
-          <div className={`flex items-center gap-2 rounded-full px-3 md:px-5 py-2 md:py-2.5 transition-all ${
+          <div className={`flex items-center gap-2 rounded-full px-3 md:px-5 py-2 md:py-2.5 overflow-hidden transition-all ${
             dark
               ? "bg-[#f2f4f7] border border-black/5 focus-within:border-[#0072BC]/40 focus-within:bg-white"
               : "bg-white/15 border border-white/20 focus-within:bg-white/25 focus-within:border-white/40"
