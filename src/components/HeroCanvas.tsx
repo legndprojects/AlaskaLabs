@@ -27,8 +27,8 @@ export default function HeroCanvas() {
     offset: ["start start", "end end"],
   });
 
-  /* fade canvas out at very end */
-  const canvasOpacity = useTransform(scrollYProgress, [0, 0.02, 0.92, 1], [0, 1, 1, 0]);
+  /* canvas visible immediately, fades out at very end */
+  const canvasOpacity = useTransform(scrollYProgress, [0.9, 0.98], [1, 0]);
   /* text fades in early, fades out as you scroll deeper */
   const textOpacity = useTransform(scrollYProgress, [0.02, 0.1, 0.35, 0.5], [0, 1, 1, 0]);
   /* map scroll to frame index across the full scroll range */
@@ -134,7 +134,7 @@ export default function HeroCanvas() {
   }, [loaded, draw, frameIndex]);
 
   return (
-    <div ref={containerRef} className="relative bg-[#f5f5f5]" style={{ height: "300vh" }}>
+    <div ref={containerRef} className="relative bg-[#f5f5f5]" style={{ height: "250vh" }}>
       {/* sticky pins the canvas for the full scroll-through of the container */}
       <motion.div
         style={{ opacity: canvasOpacity }}
