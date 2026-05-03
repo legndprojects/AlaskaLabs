@@ -131,7 +131,9 @@ export default function HeroCanvas() {
     <div
       ref={containerRef}
       className="relative"
-      style={{ height: "180vh", clipPath: "inset(0)" }}
+      data-dark-section
+      data-clip-section
+      style={{ height: "100vh", clipPath: "inset(0)" }}
     >
       <div className="fixed inset-0 w-screen h-screen">
         <canvas ref={canvasRef} className="w-full h-full" />

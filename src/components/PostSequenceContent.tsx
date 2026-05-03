@@ -135,7 +135,12 @@ function FinalSection() {
         >
           <Link
             href="/shop"
-            className="inline-block px-12 py-4 text-xl font-display tracking-[0.2em] uppercase bg-[#1a1a1a] text-white rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(0,0,0,0.2)]"
+            className="inline-block px-12 py-4 text-xl font-display tracking-[0.2em] uppercase text-white rounded-full transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(0,30,120,0.35)] hover:shadow-[0_0_35px_rgba(0,40,160,0.45)]"
+            style={{
+              backgroundSize: "300% 300%",
+              backgroundImage: "linear-gradient(135deg, #0033aa, #0055dd, #002288, #0066cc, #003399, #0044bb)",
+              animation: "shimmer-btn 8s ease-in-out infinite",
+            }}
           >
             Shop Now
           </Link>

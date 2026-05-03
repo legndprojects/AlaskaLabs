@@ -41,6 +41,12 @@ body {
   100% { background-position: 200% center; }
 }
 
+@keyframes shimmer-btn {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .shimmer-line {
   background: linear-gradient(
     90deg,

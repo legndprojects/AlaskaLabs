@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "About — AlaskaLabs",
-  description: "Learn about AlaskaLabs and our commitment to purity.",
+  title: "About — Alaska Labs",
+  description: "Learn about Alaska Labs and our commitment to purity.",
 };
 
 export default function AboutPage() {
@@ -12,7 +12,7 @@ export default function AboutPage() {
         </h1>
         <div className="space-y-6 text-base font-sans text-[#444] leading-relaxed">
           <p>
-            AlaskaLabs was founded with a single mission: deliver the purest
+            Alaska Labs was founded with a single mission: deliver the purest
             research peptides available, with full transparency and zero
             compromise on quality.
           </p>
@@ -29,7 +29,7 @@ export default function AboutPage() {
           </p>
           <p>
             We believe researchers deserve better than opaque sourcing and
-            questionable quality. That&apos;s why we&apos;ve built AlaskaLabs
+            questionable quality. That&apos;s why we&apos;ve built Alaska Labs
             from the ground up around transparency, testing, and trust.
           </p>
         </div>

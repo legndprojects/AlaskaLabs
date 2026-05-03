@@ -37,13 +37,25 @@ export default function Navbar() {
     return () => window.removeEventListener("peptide-theme", handler);
   }, []);
 
-  /* On homepage, switch navbar to solid once user scrolls past the dark section */
+  /* On homepage, switch navbar between transparent (over dark sections)
+     and solid white (over light sections). Checks all data-dark-section
+     elements by their viewport position. */
   useEffect(() => {
     if (pathname !== "/") return;
-    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.7);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const checkSection = () => {
+      let overDark = false;
+      const anticipate = 60;
+      document.querySelectorAll("[data-dark-section]").forEach((el) => {
+        const r = (el as HTMLElement).getBoundingClientRect();
+        /* If this element (or its fixed canvas) overlaps the top 80px
+           of the viewport, the navbar is over a dark section */
+        if (r.top < 80 && r.bottom > anticipate) overDark = true;
+      });
+      setScrolled(!overDark);
+    };
+    checkSection();
+    window.addEventListener("scroll", checkSection, { passive: true });
+    return () => window.removeEventListener("scroll", checkSection);
   }, [pathname]);
 
   /* Sync shake with PeptideShowcase nav */
@@ -168,7 +180,8 @@ export default function Navbar() {
         const dark = pathname !== "/" || scrolled;
         return (
       <>
-      <div className="flex items-center gap-2 md:gap-8 px-4 md:px-10 py-6 md:py-5 max-w-[1600px] mx-auto">
+      <div className="flex items-center gap-2 md:gap-8 px-4 md:px-10 py-6 md:py-6 max-w-[1600px] mx-auto">
+
         {/* Brand */}
         <Link
           href="/"
@@ -183,9 +196,9 @@ export default function Navbar() {
         <form
           ref={formRef}
           onSubmit={onSubmit}
-          className="relative flex-1 min-w-0 max-w-md"
+          className="relative flex-1 min-w-0 max-w-md md:max-w-lg"
         >
-          <div className={`flex items-center gap-2 rounded-full px-3 md:px-4 py-2 transition-all ${
+          <div className={`flex items-center gap-2 rounded-full px-3 md:px-5 py-2 md:py-2.5 transition-all ${
             dark
               ? "bg-[#f2f4f7] border border-black/5 focus-within:border-[#0072BC]/40 focus-within:bg-white"
               : "bg-white/15 border border-white/20 focus-within:bg-white/25 focus-within:border-white/40"

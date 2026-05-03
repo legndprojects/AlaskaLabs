@@ -350,21 +350,21 @@ export default function PeptideShowcase() {
   };
 
   return (
-    <section className="relative bg-black pt-2 pb-2 md:pt-3 md:pb-3 px-2 md:px-3 flex items-center justify-center overflow-hidden min-h-svh">
+    <section data-dark-section className="relative bg-black pt-2 pb-2 px-2 md:p-3 flex items-center justify-center overflow-hidden min-h-svh md:h-svh md:flex-col">
       {/* Primary ambient glow — wide horizontal spread (desktop only) */}
       <div
         className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:block"
         style={{
           width: "200vw",
           height: "160%",
-          background: `radial-gradient(ellipse 60% 50% at 50% 50%, ${p.theme.mid} 0%, ${p.theme.mid}cc 20%, ${p.theme.mid}55 45%, transparent 70%)`,
+          background: `radial-gradient(ellipse 60% 50% at 50% 50%, ${p.theme.mid}88 0%, ${p.theme.mid}55 20%, ${p.theme.mid}22 45%, transparent 70%)`,
           opacity: 1,
           filter: "blur(30px)",
           transition: "background 400ms ease",
         }}
       />
 
-      {/* Bottom bleed — wide color wash into white below (desktop only) */}
+      {/* Bottom bleed — dark wash below (desktop only) */}
       <div
         className="pointer-events-none absolute hidden md:block"
         style={{
@@ -372,14 +372,14 @@ export default function PeptideShowcase() {
           left: "-20vw",
           right: "-20vw",
           height: "500px",
-          background: `radial-gradient(ellipse 70% 80% at 50% 0%, ${p.theme.mid} 0%, ${p.theme.mid}88 25%, ${p.theme.mid}33 50%, transparent 75%)`,
+          background: `radial-gradient(ellipse 70% 80% at 50% 0%, ${p.theme.mid}66 0%, ${p.theme.mid}33 25%, ${p.theme.mid}15 50%, transparent 75%)`,
           opacity: 1,
           filter: "blur(30px)",
           transition: "background 400ms ease",
         }}
       />
 
-      {/* Top bleed — color wash above (desktop only) */}
+      {/* Top bleed — dark wash above (desktop only) */}
       <div
         className="pointer-events-none absolute hidden md:block"
         style={{
@@ -387,7 +387,7 @@ export default function PeptideShowcase() {
           left: "-10vw",
           right: "-10vw",
           height: "350px",
-          background: `radial-gradient(ellipse 70% 80% at 50% 100%, ${p.theme.mid}aa 0%, ${p.theme.mid}44 40%, transparent 70%)`,
+          background: `radial-gradient(ellipse 70% 80% at 50% 100%, ${p.theme.mid}66 0%, ${p.theme.mid}28 40%, transparent 70%)`,
           opacity: 1,
           filter: "blur(30px)",
           transition: "background 400ms ease",
@@ -396,9 +396,8 @@ export default function PeptideShowcase() {
 
       <motion.div
         animate={bgShake}
-        className="relative w-full rounded-[16px] md:rounded-[24px] overflow-hidden"
+        className="relative w-full max-w-[1280px] md:max-w-none rounded-[16px] md:rounded-[24px] overflow-hidden min-h-[98svh] md:min-h-0 md:flex-1"
         style={{
-          height: "calc(100svh - 16px)",
           background: `linear-gradient(145deg, ${p.theme.start} 0%, ${p.theme.mid} 50%, ${p.theme.end} 100%)`,
           boxShadow: `0 60px 120px -30px ${p.theme.halo}, 0 30px 60px -20px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -60px 120px rgba(0,0,0,0.35)`,
           transition:
@@ -425,13 +424,14 @@ export default function PeptideShowcase() {
 
         {/* top-left brand + top-right cart — desktop only, pushed below navbar */}
         <div className="absolute top-6 md:top-20 left-6 md:left-10 right-6 md:right-10 hidden md:flex items-start justify-between z-20">
-          <div className="flex items-center gap-3">
-            <span
-              className="font-display text-white text-lg md:text-xl tracking-[0.25em] uppercase"
-              style={{ textShadow: "0 2px 12px rgba(0,0,0,0.35)" }}
-            >
-              AlaskaLabs
-            </span>
+          <div className="flex items-center gap-4">
+            <img
+              src="/images/alaska-logo.png"
+              alt="AlaskaLabs"
+              className="h-16 md:h-24 w-auto object-contain"
+              draggable={false}
+              style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.3))", marginTop: "-8px", marginBottom: "-16px" }}
+            />
             <span className="hidden md:inline-block h-px w-8 bg-white/40" />
             <span className="hidden md:inline text-white/60 text-[11px] tracking-[0.3em] uppercase font-display">
               Research Peptides
@@ -492,19 +492,6 @@ export default function PeptideShowcase() {
           {p.stampR}
         </span>
 
-        {/* Decorative plus marks — desktop only */}
-        <span
-          className="absolute top-8 left-1/2 -translate-x-1/2 text-white/50 text-2xl z-10 font-display hidden md:block"
-          aria-hidden
-        >
-          +
-        </span>
-        <span
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 text-2xl z-10 font-display hidden md:block"
-          aria-hidden
-        >
-          +
-        </span>
 
         {/* Centered bottle + crossfade between slides */}
         <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
@@ -775,7 +762,7 @@ export default function PeptideShowcase() {
         </nav>
 
         {/* Corner serial numbers — desktop only */}
-        <span className="absolute top-6 md:top-10 left-1/2 -translate-x-1/2 font-display text-[11px] tracking-[0.3em] text-white/50 uppercase hidden md:block">
+        <span className="absolute top-6 md:top-16 left-1/2 -translate-x-1/2 font-display text-[11px] tracking-[0.3em] text-white/50 uppercase hidden md:block">
           {String(idx + 1).padStart(3, "0")}
         </span>
       </motion.div>
