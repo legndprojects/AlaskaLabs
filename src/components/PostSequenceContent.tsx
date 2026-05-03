@@ -62,8 +62,8 @@ function SpecsAndLabSection() {
 
         {/* ── RIGHT: Spec Cards 2×2 ── */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           className="flex items-center"

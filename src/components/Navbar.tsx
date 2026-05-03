@@ -44,7 +44,7 @@ export default function Navbar() {
     if (pathname !== "/") return;
     const checkSection = () => {
       let overDark = false;
-      const anticipate = 60;
+      const anticipate = 100;
       document.querySelectorAll("[data-dark-section]").forEach((el) => {
         const r = (el as HTMLElement).getBoundingClientRect();
         /* If this element (or its fixed canvas) overlaps the top 80px
