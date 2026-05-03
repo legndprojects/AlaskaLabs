@@ -124,7 +124,7 @@ export default function HeroCanvas({
 
   /* react to scroll (suppressed while the intro animation is running) */
   useMotionValueEvent(frameIndex, "change", (v) => {
-    if (loaded && !introActiveRef.current) draw(Math.round(v));
+    if (loaded && !introActiveRef.current) draw(Math.max(INTRO_END_FRAME, Math.round(v)));
   });
 
   /* intro animation: auto-play frames 0 → INTRO_END_FRAME on load, then
