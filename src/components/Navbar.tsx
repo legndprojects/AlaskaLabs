@@ -155,17 +155,11 @@ export default function Navbar() {
 
   return (
     <>
-    {/* Top announcement bar — desktop only */}
-    <div className="fixed top-0 left-0 right-0 z-50 hidden md:flex h-8 items-center justify-center bg-white border-b border-[#ededed]">
-      <p className="text-[12px] tracking-[0.2em] uppercase font-sans font-semibold text-[#444]">
-        Free Shipping on Orders $199+ <span className="text-[#ccc] mx-2">|</span> For Research Purposes Only
-      </p>
-    </div>
-    <motion.nav animate={navShake} className={`fixed top-0 md:top-[32px] left-0 right-0 z-50 transition-colors duration-300 ${
+    <motion.nav animate={navShake} className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
       pathname === "/"
         ? scrolled
           ? "bg-white backdrop-blur-xl border-b border-black/5"
-          : "bg-transparent md:bg-white md:backdrop-blur-xl md:border-b md:border-black/5 border-b-0 md:border-b"
+          : "bg-transparent border-b-0"
         : "bg-white backdrop-blur-xl border-b border-black/5"
     }`}>
       {(() => {
@@ -179,7 +173,7 @@ export default function Navbar() {
         <Link
           href="/"
           className={`text-base md:text-2xl font-display tracking-[0.15em] md:tracking-[0.2em] uppercase whitespace-nowrap shrink-0 transition-colors duration-300 ${
-            dark ? "text-[#1a1a1a]" : "text-white md:text-[#1a1a1a]"
+            dark ? "text-[#1a1a1a]" : "text-white"
           }`}
         >
           AlaskaLabs
@@ -194,7 +188,7 @@ export default function Navbar() {
           <div className={`flex items-center gap-2 rounded-full px-3 md:px-4 py-2 transition-all ${
             dark
               ? "bg-[#f2f4f7] border border-black/5 focus-within:border-[#0072BC]/40 focus-within:bg-white"
-              : "bg-white/15 border border-white/20 focus-within:bg-white/25 focus-within:border-white/40 md:bg-[#f2f4f7] md:border-black/5 md:focus-within:border-[#0072BC]/40 md:focus-within:bg-white"
+              : "bg-white/15 border border-white/20 focus-within:bg-white/25 focus-within:border-white/40"
           }`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -202,7 +196,7 @@ export default function Navbar() {
               viewBox="0 0 24 24"
               strokeWidth={1.8}
               stroke="currentColor"
-              className={`w-4 h-4 shrink-0 ${dark ? "text-[#888]" : "text-white/60 md:text-[#888]"}`}
+              className={`w-4 h-4 shrink-0 ${dark ? "text-[#888]" : "text-white/60"}`}
             >
               <path
                 strokeLinecap="round"
@@ -222,7 +216,7 @@ export default function Navbar() {
               onKeyDown={onKeyDown}
               placeholder="Search…"
               className={`flex-1 bg-transparent outline-none text-sm font-sans truncate transition-colors duration-300 ${
-                dark ? "text-[#1a1a1a] placeholder:text-[#888]" : "text-white placeholder:text-white/50 md:text-[#1a1a1a] md:placeholder:text-[#888]"
+                dark ? "text-[#1a1a1a] placeholder:text-[#888]" : "text-white placeholder:text-white/50"
               }`}
               aria-label="Search peptides"
               aria-autocomplete="list"
@@ -306,11 +300,11 @@ export default function Navbar() {
 
         {/* Right-side icons */}
         <div className={`flex items-center gap-5 md:gap-5 shrink-0 ml-auto lg:ml-0 transition-colors duration-300 ${
-          dark ? "text-[#444]" : "text-white md:text-[#444]"
+          dark ? "text-[#444]" : "text-white"
         }`}>
           <Link
             href="/account"
-            className={`${dark ? "text-[#444]" : "text-white/90 md:text-[#444]"} hover:text-[#0072BC] transition-colors`}
+            className={`${dark ? "text-[#444]" : "text-white/90"} hover:text-[#0072BC] transition-colors`}
             aria-label="Account"
           >
             <svg
@@ -331,7 +325,7 @@ export default function Navbar() {
 
           <button
             onClick={openDrawer}
-            className={`relative ${dark ? "text-[#444]" : "text-white/90 md:text-[#444]"} hover:text-[#0072BC] transition-colors`}
+            className={`relative ${dark ? "text-[#444]" : "text-white/90"} hover:text-[#0072BC] transition-colors`}
             aria-label="Open cart"
           >
             <svg

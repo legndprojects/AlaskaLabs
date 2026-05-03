@@ -350,7 +350,7 @@ export default function PeptideShowcase() {
   };
 
   return (
-    <section className="relative bg-black md:bg-white pt-2 pb-2 md:py-24 px-2 md:px-8 lg:px-16 flex items-center justify-center overflow-hidden md:overflow-visible min-h-svh md:min-h-0">
+    <section className="relative bg-black pt-2 pb-2 md:pt-3 md:pb-3 px-2 md:px-3 flex items-center justify-center overflow-hidden min-h-svh">
       {/* Primary ambient glow — wide horizontal spread (desktop only) */}
       <div
         className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:block"
@@ -396,7 +396,7 @@ export default function PeptideShowcase() {
 
       <motion.div
         animate={bgShake}
-        className="relative w-full max-w-[1280px] rounded-[16px] md:rounded-[36px] overflow-hidden min-h-[98svh] md:min-h-0 md:aspect-[16/10]"
+        className="relative w-full max-w-[1920px] rounded-[16px] md:rounded-[24px] overflow-hidden min-h-[98svh] md:min-h-[95svh]"
         style={{
           background: `linear-gradient(145deg, ${p.theme.start} 0%, ${p.theme.mid} 50%, ${p.theme.end} 100%)`,
           boxShadow: `0 60px 120px -30px ${p.theme.halo}, 0 30px 60px -20px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -60px 120px rgba(0,0,0,0.35)`,
@@ -451,21 +451,21 @@ export default function PeptideShowcase() {
         {/* vertical side menu — desktop only */}
         <aside className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-3 z-20">
           {[
-            { label: "Store" },
-            { label: "Peptides", active: true },
-            { label: "Labs" },
+            { label: "About Us", href: "/about" },
+            { label: "Contact Us", href: "/contact" },
+            { label: "FAQ", href: "/faq" },
+            { label: "Wholesale", href: "/wholesale" },
           ].map((item) => (
-            <span
-              key={item.label}
-              className={`font-display text-[11px] tracking-[0.3em] uppercase ${
-                item.active ? "text-white" : "text-white/45"
-              }`}
+            <a
+              key={item.href}
+              href={item.href}
+              className="font-display text-[11px] tracking-[0.3em] uppercase text-white/45 hover:text-white transition-colors"
               style={{
                 textShadow: "0 2px 10px rgba(0,0,0,0.3)",
               }}
             >
               {item.label}
-            </span>
+            </a>
           ))}
         </aside>
 
