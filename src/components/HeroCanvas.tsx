@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useScroll, useTransform, useMotionValueEvent, motion } from "framer-motion";
 import { product } from "@/data/product";
 import FlipText from "./FlipText";
 
@@ -21,20 +21,26 @@ export default function HeroCanvas() {
   const [loaded, setLoaded] = useState(false);
   const [inView, setInView] = useState(false);
 
+  /*
+   * clip-path: inset(0) on the container clips the fixed canvas to the
+   * container's visible area. The canvas fills the viewport while you
+   * scroll through, and vanishes the instant the container scrolls past.
+   * Zero dead space — the next section starts immediately.
+   *
+   * Offset ["start start", "end start"]:
+   *   scrollYProgress 0 = container top at viewport top
+   *   scrollYProgress 1 = container bottom at viewport top
+   *   Total scroll distance = container height (300vh)
+   *
+   * All 192 frames play across 95% of that scroll distance.
+   */
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  /*
-   * Container = 220vh, sticky canvas = 100vh
-   * Sticky range = 120vh = 120/220 = 0.545 of scrollYProgress
-   * All 192 frames play within the sticky range.
-   * After that the canvas naturally scrolls away.
-   */
-  const STICKY_END = 120 / 220;
-  const frameIndex = useTransform(scrollYProgress, [0, STICKY_END * 0.97], [0, TOTAL_FRAMES - 1]);
-  const textOpacity = useTransform(scrollYProgress, [0.01, 0.06, 0.25, 0.4], [0, 1, 1, 0]);
+  const frameIndex = useTransform(scrollYProgress, [0, 0.95], [0, TOTAL_FRAMES - 1]);
+  const textOpacity = useTransform(scrollYProgress, [0.01, 0.06, 0.3, 0.45], [0, 1, 1, 0]);
 
   /* detect when section enters viewport to trigger FlipText */
   useEffect(() => {
@@ -70,20 +76,16 @@ export default function HeroCanvas() {
     return () => { mounted = false; };
   }, []);
 
-  /* draw a frame — HiDPI aware, cover logic */
   const draw = useCallback((idx: number) => {
     const canvas = canvasRef.current;
     const img = imagesRef.current[idx];
     if (!canvas || !img) return;
-
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const dpr = window.devicePixelRatio || 1;
-    const el = canvas.parentElement;
-    if (!el) return;
-    const w = el.clientWidth;
-    const h = el.clientHeight;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
 
     if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
       canvas.width = w * dpr;
@@ -94,43 +96,28 @@ export default function HeroCanvas() {
     }
 
     ctx.clearRect(0, 0, w, h);
-
     const imgRatio = REF_WIDTH / REF_HEIGHT;
     const canvasRatio = w / h;
     let dw: number, dh: number, dx: number, dy: number;
-
     if (imgRatio > canvasRatio) {
-      dh = h;
-      dw = h * imgRatio;
-      dx = (w - dw) / 2;
-      dy = 0;
+      dh = h; dw = h * imgRatio; dx = (w - dw) / 2; dy = 0;
     } else {
-      dw = w;
-      dh = w / imgRatio;
-      dx = 0;
-      dy = (h - dh) / 2;
+      dw = w; dh = w / imgRatio; dx = 0; dy = (h - dh) / 2;
     }
-
     ctx.drawImage(img, dx, dy, dw, dh);
   }, []);
 
-  /* scroll-driven playback */
   useMotionValueEvent(frameIndex, "change", (v) => {
-    if (loaded) draw(Math.round(Math.min(v, TOTAL_FRAMES - 1)));
+    if (loaded) draw(Math.round(Math.max(0, Math.min(v, TOTAL_FRAMES - 1))));
   });
 
-  /* draw first frame when loaded */
-  useEffect(() => {
-    if (loaded) draw(0);
-  }, [loaded, draw]);
+  useEffect(() => { if (loaded) draw(0); }, [loaded, draw]);
 
-  /* handle resize */
   useEffect(() => {
     const onResize = () => {
       const canvas = canvasRef.current;
       if (!canvas) return;
-      canvas.width = 0;
-      canvas.height = 0;
+      canvas.width = 0; canvas.height = 0;
       if (loaded) draw(Math.round(frameIndex.get()));
     };
     window.addEventListener("resize", onResize);
@@ -138,34 +125,27 @@ export default function HeroCanvas() {
   }, [loaded, draw, frameIndex]);
 
   return (
-    <div ref={containerRef} className="bg-[#f5f5f5]" style={{ height: "220vh" }}>
-      {/* sticky keeps canvas pinned for 250vh of scrolling, then it
-          naturally scrolls away — no dead space, no gap */}
-      <div className="sticky top-0 w-full h-screen overflow-hidden">
+    <div
+      ref={containerRef}
+      className="relative"
+      style={{ height: "300vh", clipPath: "inset(0)" }}
+    >
+      <div className="fixed inset-0 w-screen h-screen">
         <canvas ref={canvasRef} className="w-full h-full" />
-        {/* Text overlay */}
         <motion.div
           style={{ opacity: textOpacity }}
           className="absolute inset-0 pointer-events-none flex items-center"
         >
-          <div
-            style={{
-              position: "absolute",
-              top: "100px",
-              bottom: 0,
-              left: "4vw",
-              width: "min(36vw, 520px)",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
+          <div style={{
+            position: "absolute", top: "100px", bottom: 0,
+            left: "4vw", width: "min(36vw, 520px)",
+            display: "flex", alignItems: "center",
+          }}>
             <div className="w-full">
               <div
                 className="font-display text-xs md:text-sm tracking-[0.35em] uppercase text-white/50 mb-4"
                 style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6)" }}
-              >
-                ALASKA LABS
-              </div>
+              >ALASKA LABS</div>
               <div className="h-px w-10 bg-white/40 mb-7" />
               <h2
                 className="text-4xl md:text-6xl lg:text-7xl xl:text-[7rem] font-display font-black uppercase text-white leading-[0.85] tracking-tight"
@@ -173,22 +153,13 @@ export default function HeroCanvas() {
               >
                 {["THE GOLD", "STANDARD", "IN PURITY"].map((line, li) => (
                   <span key={li} className="block whitespace-nowrap">
-                    <FlipText
-                      text={line}
-                      trigger={loaded && inView}
-                      delay={li * 260}
-                      stagger={28}
-                      cycles={4}
-                    />
+                    <FlipText text={line} trigger={loaded && inView} delay={li * 260} stagger={28} cycles={4} />
                   </span>
                 ))}
               </h2>
               <p
                 className="mt-8 max-w-md text-[13px] md:text-[15px] leading-[1.65] text-white/70 italic"
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  textShadow: "0 2px 14px rgba(0,0,0,0.55)",
-                }}
+                style={{ fontFamily: "var(--font-serif)", textShadow: "0 2px 14px rgba(0,0,0,0.55)" }}
               >
                 Every batch undergoes LC-MS and HPLC testing for identity, purity, endotoxins, residual solvents, bioburden, and elemental impurities — going beyond basic pass/fail to deliver research-grade confidence with every lot.
               </p>
