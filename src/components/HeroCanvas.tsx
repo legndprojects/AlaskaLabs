@@ -36,9 +36,12 @@ export default function HeroCanvas() {
    */
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"],
+    offset: ["start end", "end start"],
   });
 
+  /* Frames start immediately as the container enters the viewport from
+     below and play through until it exits at the top. Total scroll
+     distance = 300vh + 100vh = 400vh. */
   const frameIndex = useTransform(scrollYProgress, [0, 0.95], [0, TOTAL_FRAMES - 1]);
   const textOpacity = useTransform(scrollYProgress, [0.01, 0.06, 0.3, 0.45], [0, 1, 1, 0]);
 
