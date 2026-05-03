@@ -27,8 +27,8 @@ export default function HeroCanvas() {
     offset: ["start start", "end start"],
   });
 
-  /* fade canvas in when section enters, out when it leaves */
-  const canvasOpacity = useTransform(scrollYProgress, [0, 0.05, 0.85, 0.95], [0, 1, 1, 0]);
+  /* fade canvas out at end of section */
+  const canvasOpacity = useTransform(scrollYProgress, [0.85, 0.95], [1, 0]);
   /* text fades in early, fades out as you scroll deeper */
   const textOpacity = useTransform(scrollYProgress, [0.02, 0.1, 0.28, 0.38], [0, 1, 1, 0]);
   /* map scroll to frame index */
@@ -78,8 +78,10 @@ export default function HeroCanvas() {
     if (!ctx) return;
 
     const dpr = window.devicePixelRatio || 1;
-    const w = window.innerWidth;
-    const h = window.innerHeight;
+    const el = canvas.parentElement;
+    if (!el) return;
+    const w = el.clientWidth;
+    const h = el.clientHeight;
 
     if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
       canvas.width = w * dpr;
@@ -135,22 +137,20 @@ export default function HeroCanvas() {
 
   return (
     <div ref={containerRef} className="relative bg-[#050D1A]" style={{ height: "250vh" }}>
+      {/* sticky keeps the canvas pinned inside this container only —
+          it won't overlay sections above or below */}
       <motion.div
         style={{ opacity: canvasOpacity }}
-        className="fixed inset-0 w-screen h-screen pointer-events-none"
-        aria-hidden
+        className="sticky top-0 w-full h-screen overflow-hidden"
       >
         <canvas
           ref={canvasRef}
           className="w-full h-full"
-          style={{ zIndex: 1 }}
         />
         {/* Text overlay */}
         <motion.div
           style={{ opacity: textOpacity }}
-          className="absolute pointer-events-none flex items-center"
-          aria-hidden={false}
-          role="presentation"
+          className="absolute inset-0 pointer-events-none flex items-center"
         >
           <div
             style={{
@@ -159,7 +159,6 @@ export default function HeroCanvas() {
               bottom: 0,
               left: "4vw",
               width: "min(36vw, 520px)",
-              zIndex: 2,
               display: "flex",
               alignItems: "center",
             }}

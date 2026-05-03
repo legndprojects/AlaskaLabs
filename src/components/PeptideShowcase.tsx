@@ -396,8 +396,9 @@ export default function PeptideShowcase() {
 
       <motion.div
         animate={bgShake}
-        className="relative w-full max-w-[1920px] rounded-[16px] md:rounded-[24px] overflow-hidden min-h-[98svh] md:min-h-[95svh]"
+        className="relative w-full rounded-[16px] md:rounded-[24px] overflow-hidden"
         style={{
+          height: "calc(100svh - 16px)",
           background: `linear-gradient(145deg, ${p.theme.start} 0%, ${p.theme.mid} 50%, ${p.theme.end} 100%)`,
           boxShadow: `0 60px 120px -30px ${p.theme.halo}, 0 30px 60px -20px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -60px 120px rgba(0,0,0,0.35)`,
           transition:
@@ -422,8 +423,8 @@ export default function PeptideShowcase() {
           }}
         />
 
-        {/* top-left brand + top-right cart — desktop only */}
-        <div className="absolute top-6 md:top-10 left-6 md:left-10 right-6 md:right-10 hidden md:flex items-start justify-between z-20">
+        {/* top-left brand + top-right cart — desktop only, pushed below navbar */}
+        <div className="absolute top-6 md:top-20 left-6 md:left-10 right-6 md:right-10 hidden md:flex items-start justify-between z-20">
           <div className="flex items-center gap-3">
             <span
               className="font-display text-white text-lg md:text-xl tracking-[0.25em] uppercase"
