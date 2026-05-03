@@ -287,7 +287,9 @@ export default function Navbar() {
                 className={`text-[17px] font-display tracking-[0.1em] uppercase transition-colors whitespace-nowrap ${
                   active
                     ? "text-[#0072BC]"
-                    : "text-[#444] hover:text-[#0072BC]"
+                    : dark
+                      ? "text-[#444] hover:text-[#0072BC]"
+                      : "text-white/80 hover:text-white"
                 }`}
               >
                 {isGold ? (

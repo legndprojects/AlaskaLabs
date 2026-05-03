@@ -24,15 +24,15 @@ export default function HeroCanvas() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"],
+    offset: ["start start", "end end"],
   });
 
-  /* fade canvas in as section enters viewport, out as it leaves */
-  const canvasOpacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
+  /* fade canvas out at very end */
+  const canvasOpacity = useTransform(scrollYProgress, [0, 0.02, 0.92, 1], [0, 1, 1, 0]);
   /* text fades in early, fades out as you scroll deeper */
-  const textOpacity = useTransform(scrollYProgress, [0.15, 0.25, 0.5, 0.65], [0, 1, 1, 0]);
-  /* map scroll to frame index — play frames across the visible portion */
-  const frameIndex = useTransform(scrollYProgress, [0.1, 0.9], [0, TOTAL_FRAMES - 1]);
+  const textOpacity = useTransform(scrollYProgress, [0.02, 0.1, 0.35, 0.5], [0, 1, 1, 0]);
+  /* map scroll to frame index across the full scroll range */
+  const frameIndex = useTransform(scrollYProgress, [0, FRAME_SCROLL_RANGE], [0, TOTAL_FRAMES - 1]);
 
   /* detect when section enters viewport to trigger FlipText */
   useEffect(() => {
@@ -78,10 +78,8 @@ export default function HeroCanvas() {
     if (!ctx) return;
 
     const dpr = window.devicePixelRatio || 1;
-    const el = canvas.parentElement;
-    if (!el) return;
-    const w = el.clientWidth;
-    const h = el.clientHeight;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
 
     if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
       canvas.width = w * dpr;
@@ -136,9 +134,8 @@ export default function HeroCanvas() {
   }, [loaded, draw, frameIndex]);
 
   return (
-    <div ref={containerRef} className="relative" style={{ height: "200vh" }}>
-      {/* sticky keeps the canvas pinned inside this container only —
-          it won't overlay sections above or below */}
+    <div ref={containerRef} className="relative" style={{ height: "300vh" }}>
+      {/* sticky pins the canvas for the full scroll-through of the container */}
       <motion.div
         style={{ opacity: canvasOpacity }}
         className="sticky top-0 w-full h-screen overflow-hidden"

@@ -460,7 +460,7 @@ export default function PeptideShowcase() {
             <a
               key={item.href}
               href={item.href}
-              className="font-display text-[11px] tracking-[0.3em] uppercase text-white hover:text-white/70 transition-colors"
+              className="font-display text-[11px] tracking-[0.3em] uppercase text-white/45 hover:text-white transition-colors"
               style={{
                 textShadow: "0 2px 10px rgba(0,0,0,0.3)",
               }}
