@@ -138,7 +138,7 @@ export default function HeroCanvas() {
   }, [loaded, draw, frameIndex]);
 
   return (
-    <div ref={containerRef} style={{ height: "350vh" }}>
+    <div ref={containerRef} className="bg-[#f5f5f5]" style={{ height: "350vh" }}>
       {/* sticky keeps canvas pinned for 250vh of scrolling, then it
           naturally scrolls away — no dead space, no gap */}
       <div className="sticky top-0 w-full h-screen overflow-hidden">
