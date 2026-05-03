@@ -23,19 +23,18 @@ export default function HeroCanvas() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"],
+    offset: ["start 0.5", "end start"],
   });
 
   /*
-   * Container = 350vh, sticky canvas = 100vh
-   * Sticky range = 250vh = 250/350 = 0.714 of scrollYProgress
-   * Map all 192 frames within the sticky range so the full animation
-   * plays while the canvas is pinned. After 0.714 the canvas naturally
-   * scrolls away — no dead space, no gap.
+   * With offset ["start 0.5", "end start"]:
+   * Total scroll range = 350vh + 50vh = 400vh
+   * Sticky begins when container top hits viewport top (scrollYProgress ~0.125)
+   * Sticky range = 250vh of the 400vh total = ends at ~0.75
+   * Map frames from when sticky begins through end of sticky range
    */
-  const STICKY_END = 250 / 350; // ~0.714
-  const frameIndex = useTransform(scrollYProgress, [0, STICKY_END * 0.98], [0, TOTAL_FRAMES - 1]);
-  const textOpacity = useTransform(scrollYProgress, [0.01, 0.06, 0.25, 0.4], [0, 1, 1, 0]);
+  const frameIndex = useTransform(scrollYProgress, [0.05, 0.72], [0, TOTAL_FRAMES - 1]);
+  const textOpacity = useTransform(scrollYProgress, [0.08, 0.15, 0.35, 0.5], [0, 1, 1, 0]);
 
   /* detect when section enters viewport to trigger FlipText */
   useEffect(() => {
