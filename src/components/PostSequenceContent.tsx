@@ -85,7 +85,7 @@ function SpecsAndLabSection() {
                   scale: 1.02,
                   transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] },
                 }}
-                className="group relative bg-white/70 backdrop-blur-sm rounded-2xl p-7 md:p-8 border border-[#0072BC]/10 overflow-hidden cursor-default transition-[box-shadow,border-color] duration-400 hover:border-[#0072BC]/35 hover:shadow-[0_24px_48px_-16px_rgba(0,114,188,0.3)]"
+                className="group relative bg-white/70 backdrop-blur-sm rounded-2xl p-7 md:p-8 border border-[#0072BC]/10 overflow-hidden cursor-default transition-[box-shadow,border-color] duration-400 hover:border-[#0072BC]/35 hover:shadow-[0_24px_48px_-16px_rgba(0,114,188,0.3)] min-h-[100px] md:min-h-[120px]"
               >
                 <div
                   className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"

@@ -96,7 +96,7 @@ function ProductCard({
           </span>
           <span className="text-[9px] text-[#0072BC]/40">·</span>
           <span className="text-[9px] tracking-[0.05em] text-[#0072BC]/50 font-display">
-            &lt;.5 EU/MG
+            &lt;0.5 EU/MG
           </span>
         </div>
 
