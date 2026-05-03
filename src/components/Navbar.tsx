@@ -183,7 +183,7 @@ export default function Navbar() {
         <form
           ref={formRef}
           onSubmit={onSubmit}
-          className="relative flex-1 min-w-0 max-w-md overflow-hidden"
+          className="relative flex-1 min-w-0 max-w-md"
         >
           <div className={`flex items-center gap-2 rounded-full px-3 md:px-4 py-2 transition-all ${
             dark

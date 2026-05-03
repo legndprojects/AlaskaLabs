@@ -24,15 +24,15 @@ export default function HeroCanvas() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"],
+    offset: ["start end", "end start"],
   });
 
-  /* fade canvas out at end of section */
-  const canvasOpacity = useTransform(scrollYProgress, [0.85, 0.95], [1, 0]);
+  /* fade canvas in as section enters viewport, out as it leaves */
+  const canvasOpacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
   /* text fades in early, fades out as you scroll deeper */
-  const textOpacity = useTransform(scrollYProgress, [0.02, 0.1, 0.28, 0.38], [0, 1, 1, 0]);
-  /* map scroll to frame index */
-  const frameIndex = useTransform(scrollYProgress, [0, FRAME_SCROLL_RANGE], [0, TOTAL_FRAMES - 1]);
+  const textOpacity = useTransform(scrollYProgress, [0.15, 0.25, 0.5, 0.65], [0, 1, 1, 0]);
+  /* map scroll to frame index — play frames across the visible portion */
+  const frameIndex = useTransform(scrollYProgress, [0.1, 0.9], [0, TOTAL_FRAMES - 1]);
 
   /* detect when section enters viewport to trigger FlipText */
   useEffect(() => {
@@ -136,7 +136,7 @@ export default function HeroCanvas() {
   }, [loaded, draw, frameIndex]);
 
   return (
-    <div ref={containerRef} className="relative bg-[#050D1A]" style={{ height: "250vh" }}>
+    <div ref={containerRef} className="relative" style={{ height: "200vh" }}>
       {/* sticky keeps the canvas pinned inside this container only —
           it won't overlay sections above or below */}
       <motion.div
