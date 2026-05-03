@@ -49,7 +49,7 @@ export default function Navbar() {
         const r = (el as HTMLElement).getBoundingClientRect();
         /* If this element (or its fixed canvas) overlaps the top 80px
            of the viewport, the navbar is over a dark section */
-        if (r.top < 80 && r.bottom > anticipate) overDark = true;
+        if (r.top < 80 + anticipate && r.bottom > anticipate) overDark = true;
       });
       setScrolled(!overDark);
     };

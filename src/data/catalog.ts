@@ -91,7 +91,7 @@ export const catalog: CatalogProduct[] = [
     price: 53.96,
     thumbnail: "/images/products/mots-c-10mg.png",
     category: "Mitochondrial",
-    tags: ["mots-c", "mitochondrial", "research", "aging"],
+    tags: ["mots-c", "mitochondrial", "research", "senescence"],
     description:
       "MOTS-C is a 16-amino-acid peptide encoded within the mitochondrial 12S rRNA. It is studied as a mitochondrial-derived peptide (MDP) with published characterization of its AMPK signaling pathway interactions (Lee et al., Cell Metabolism 2015). Supplied as lyophilized powder. Research use only.",
   },

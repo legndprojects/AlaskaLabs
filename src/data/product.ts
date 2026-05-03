@@ -15,7 +15,7 @@ export const product = {
   specs: [
     { value: "≥99%", label: "ULTRA-HIGH PURITY" },
     { value: "HPLC", label: "& MASS SPEC CONFIRMED" },
-    { value: "<1 EU/MG", label: "ENDOTOXIN TESTED" },
+    { value: "<.5 EU/MG", label: "ENDOTOXIN TESTED" },
     { value: "COA", label: "CERTIFICATE OF ANALYSIS INCLUDED" },
   ],
   storySections: [
